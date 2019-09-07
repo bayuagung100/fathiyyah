@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteRule ^$ index.php [L]
+
+RewriteRule ^product/([0-9]+)/(.*)/$ index.php?content=product&id=$1 [L]
+RewriteRule ^product/$ index.php?content=product-all [L]
+
+RewriteRule ^category/([0-9]+)/(.*)/$ index.php?content=category&id=$1 [L]
+RewriteRule ^category/$ index.php?content=category-all [L]
+
+
+RewriteRule ^search/$ index.php?content=search&kata=$1 [L]
+
+</IfModule>
