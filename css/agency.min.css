@@ -76,12 +76,12 @@ h6 {
 }
 
 ::-moz-selection {
-	background: #a5758c;
+	background: #f9beda;
 	text-shadow: none
 }
 
 ::selection {
-	background: #a5758c;
+	background: #f9beda;
 	text-shadow: none
 }
 
