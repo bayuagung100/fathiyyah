@@ -11,6 +11,26 @@ if ($produk['gambar']) {
 }else{
 	$pic = "../../../img/noimage.jpg";
 }
+if ($produk['gambar2']) {
+	$pic2 = "../../../media/source/".$produk['gambar2'];
+}else{
+	$pic2 = "../../../img/noimage.jpg";
+}
+if ($produk['gambar3']) {
+	$pic3 = "../../../media/source/".$produk['gambar3'];
+}else{
+	$pic3 = "../../../img/noimage.jpg";
+}
+if ($produk['gambar4']) {
+	$pic4 = "../../../media/source/".$produk['gambar4'];
+}else{
+	$pic4 = "../../../img/noimage.jpg";
+}
+if ($produk['gambar5']) {
+	$pic5 = "../../../media/source/".$produk['gambar5'];
+}else{
+	$pic5 = "../../../img/noimage.jpg";
+}
 ?>
 <section class="bg-light page-section" id="portfolio">
 	<div class="container">
@@ -30,9 +50,61 @@ if ($produk['gambar']) {
 				</ul>
 			</div>
 
-			<div class="col-md-6 text-center" style="padding: 20px">
-				<img style="max-height: 400px;width: 100%" src="<?php echo $pic;?>">
+			<div class="col-md-6" style="padding: 20px">
+				<div class="list-content" id="gambar">
+					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic;?>">
+				</div>
+				<div class="list-content" id="gambar2">
+					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic2;?>">
+				</div>
+				<div class="list-content" id="gambar3">
+					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic3;?>">
+				</div>
+				<div class="list-content" id="gambar4">
+					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic4;?>">
+				</div>
+				<div class="list-content" id="gambar5">
+					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic5;?>">
+				</div>
+
+				<ul class="list-inline" style="padding: 20px">
+					<li class="list-link" onclick="openImage(event, 'gambar')" id="defaultOpen">
+						<img style="max-height: 150px;width: 100px" src="<?php echo $pic;?>">
+					</li>
+					<li class="list-link" onclick="openImage(event, 'gambar2')">
+						<img style="max-height: 150px;width: 100px" src="<?php echo $pic2;?>">
+					</li>
+					<li class="list-link" onclick="openImage(event, 'gambar3')">
+						<img style="max-height: 150px;width: 100px" src="<?php echo $pic3;?>">
+					</li>
+					<li class="list-link" onclick="openImage(event, 'gambar4')">
+						<img style="max-height: 150px;width: 100px" src="<?php echo $pic4;?>">
+					</li>
+					<li class="list-link" onclick="openImage(event, 'gambar5')">
+						<img style="max-height: 150px;width: 100px" src="<?php echo $pic5;?>">
+					</li>
+				</ul>
 			</div>
+
+			<script>
+			function openImage(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("list-content");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("list-link");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+
+			}
+			// Get the element with id="defaultOpen" and click on it
+			document.getElementById("defaultOpen").click();
+			</script>
+
 			<div class="col-md-6" style="padding: 20px">
 				<h3><?php echo $produk['nama_product'];?></h3>
 				<p>Category: <a href="<?php echo $set["url"].'category/'.$kat['id'].'/'.$npK.'/';?>"><?php echo $kat['nama_cp'];?></a></p>

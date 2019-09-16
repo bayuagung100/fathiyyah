@@ -55,7 +55,7 @@ switch($show){
 		$data= $query->fetch_array();
 		$aksi 	= "Edit";
 	}else{
-		$data = array("id"=>"", "nama_product"=>"", "gambar"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
+		$data = array("id"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
 		$aksi 	= "Tambah";
 	}
 
@@ -71,7 +71,11 @@ switch($show){
 		buka_form($link, $data['id'], strtolower($aksi));
 		buat_textbox("Nama Product", "nama_product", $data['nama_product'], 5);
 		buat_textbox("Harga", "harga", $data['harga'], 4);
-		buat_imagepicker("Picture", "gambar", $data['gambar']);
+		buat_imagepicker("Gambar 1", "gambar", $data['gambar']);
+		buat_imagepicker("Gambar 2", "gambar2", $data['gambar2']);
+		buat_imagepicker("Gambar 3", "gambar3", $data['gambar3']);
+		buat_imagepicker("Gambar 4", "gambar4", $data['gambar4']);
+		buat_imagepicker("Gambar 5", "gambar5", $data['gambar5']);
 
 		$kategori = $mysqli->query ("SELECT * FROM cat_product");
 		$list = array();
@@ -94,6 +98,10 @@ switch($show){
 	case "action":
 	$nama_product	= ucwords(addslashes($_POST['nama_product']));
 	$gambar 	= $_POST[gambar];
+	$gambar2 	= $_POST[gambar2];
+	$gambar3	= $_POST[gambar3];
+	$gambar4 	= $_POST[gambar4];
+	$gambar5 	= $_POST[gambar5];
 	$deskripsi		= addslashes($_POST['deskripsi']);
 	$harga		= addslashes($_POST['harga']);
 	$category	= addslashes($_POST['category']);
@@ -105,6 +113,10 @@ switch($show){
 			(
 			nama_product,
 			gambar,
+			gambar2,
+			gambar3,
+			gambar4,
+			gambar5,
 			deskripsi,
 			harga,
 			category
@@ -112,6 +124,10 @@ switch($show){
 			(
 			'$nama_product',
 			'$gambar',
+			'$gambar2',
+			'$gambar3',
+			'$gambar4',
+			'$gambar5',
 			'$deskripsi',
 			'$harga',
 			'$category'
@@ -121,6 +137,10 @@ switch($show){
 		$query 	= $mysqli->query ( "UPDATE product SET
 			nama_product 		= '$nama_product',
 			gambar 	= '$gambar',
+			gambar2 	= '$gambar2',
+			gambar3 	= '$gambar3',
+			gambar4 	= '$gambar4',
+			gambar5 	= '$gambar5',
 			deskripsi     ='$deskripsi',
 			harga     ='$harga',
 			category     ='$category'

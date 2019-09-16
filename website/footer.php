@@ -17,7 +17,7 @@
               <i class="fab fa-instagram"></i>
             </a>
           </li><li class="list-inline-item">
-            <a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Halo" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Hai, bagaimana cara memesan produk The Fathiyyah?" target="_blank">
               <i class="fab fa-whatsapp"></i>
             </a>
           </li>
