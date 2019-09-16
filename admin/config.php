@@ -2,14 +2,14 @@
  <?php
 $servername = "localhost";
 //server hosting
-$username = "u328098603_fathi";
-$password = "lalaLand123";
-$database = "u328098603_fathi";
+// $username = "u328098603_fathi";
+// $password = "lalaLand123";
+// $database = "u328098603_fathi";
 
 //localpc
-// $username = "root";
-// $password = "";
-// $database = "fathiyyah";
+$username = "root";
+$password = "";
+$database = "fathiyyah";
  
 // Create connection
 $mysqli = new mysqli($servername, $username, $password, $database);
