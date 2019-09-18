@@ -98,7 +98,7 @@ img::-moz-selection {
 }
 
 .img-product-home {
-	height: 400px;
+	height: 100%;
 	width: 100%
 }
 
