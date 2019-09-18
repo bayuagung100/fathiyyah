@@ -55,7 +55,7 @@ switch($show){
 		$data= $query->fetch_array();
 		$aksi 	= "Edit";
 	}else{
-		$data = array("id"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
+		$data = array("id"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "gambar6"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
 		$aksi 	= "Tambah";
 	}
 
@@ -76,6 +76,7 @@ switch($show){
 		buat_imagepicker("Gambar 3", "gambar3", $data['gambar3']);
 		buat_imagepicker("Gambar 4", "gambar4", $data['gambar4']);
 		buat_imagepicker("Gambar 5", "gambar5", $data['gambar5']);
+		buat_imagepicker("Gambar 6", "gambar6", $data['gambar6']);
 
 		$kategori = $mysqli->query ("SELECT * FROM cat_product");
 		$list = array();
@@ -102,6 +103,7 @@ switch($show){
 	$gambar3	= $_POST[gambar3];
 	$gambar4 	= $_POST[gambar4];
 	$gambar5 	= $_POST[gambar5];
+	$gambar6 	= $_POST[gambar6];
 	$deskripsi		= addslashes($_POST['deskripsi']);
 	$harga		= addslashes($_POST['harga']);
 	$category	= addslashes($_POST['category']);
@@ -117,6 +119,7 @@ switch($show){
 			gambar3,
 			gambar4,
 			gambar5,
+			gambar6,
 			deskripsi,
 			harga,
 			category
@@ -128,6 +131,7 @@ switch($show){
 			'$gambar3',
 			'$gambar4',
 			'$gambar5',
+			'$gambar6',
 			'$deskripsi',
 			'$harga',
 			'$category'
@@ -141,6 +145,7 @@ switch($show){
 			gambar3 	= '$gambar3',
 			gambar4 	= '$gambar4',
 			gambar5 	= '$gambar5',
+			gambar6 	= '$gambar6',
 			deskripsi     ='$deskripsi',
 			harga     ='$harga',
 			category     ='$category'

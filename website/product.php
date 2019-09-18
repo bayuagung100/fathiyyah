@@ -69,19 +69,19 @@ if ($produk['gambar5']) {
 
 				<ul class="list-inline" style="padding: 20px">
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar')" id="defaultOpen">
-						<img style="max-height: 150px;width: 100px" src="<?php echo $pic;?>">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic;?>">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar2')">
-						<img style="max-height: 150px;width: 100px" src="<?php echo $pic2;?>">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic2;?>">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar3')">
-						<img style="max-height: 150px;width: 100px" src="<?php echo $pic3;?>">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic3;?>">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar4')">
-						<img style="max-height: 150px;width: 100px" src="<?php echo $pic4;?>">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic4;?>">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar5')">
-						<img style="max-height: 150px;width: 100px" src="<?php echo $pic5;?>">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic5;?>">
 					</li>
 				</ul>
 			</div>
