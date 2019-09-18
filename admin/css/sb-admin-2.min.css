@@ -213,8 +213,7 @@
  	cursor:pointer
  }
  [type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{
- 	p
- 	adding:0;
+ 	padding:0;
  	border-style:none
  }
  input[type=checkbox],input[type=radio]{
@@ -5198,7 +5197,7 @@
  }
  @media (min-width:992px){
  	.modal-lg,.modal-xl{
- 		max-width:800px
+ 		max-width:1200px
  	}
  }
  @media (min-width:1200px){
