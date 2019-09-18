@@ -31,6 +31,11 @@ if ($produk['gambar5']) {
 }else{
 	$pic5 = "../../../img/noimage.jpg";
 }
+if ($produk['gambar6']) {
+	$pic6 = "../../../media/source/".$produk['gambar6'];
+}else{
+	$pic6 = "../../../img/noimage.jpg";
+}
 ?>
 <section class="bg-light page-section" id="portfolio">
 	<div class="container">
@@ -66,6 +71,9 @@ if ($produk['gambar5']) {
 				<div class="list-content" id="gambar5">
 					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic5;?>">
 				</div>
+				<div class="list-content" id="gambar6">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic6;?>">
+				</div>
 
 				<ul class="list-inline" style="padding: 20px">
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar')" id="defaultOpen">
@@ -82,6 +90,9 @@ if ($produk['gambar5']) {
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar5')">
 						<img style="max-height: 50px;width: 50px" src="<?php echo $pic5;?>">
+					</li>
+					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar6')">
+						<img style="max-height: 50px;width: 50px" src="<?php echo $pic6;?>">
 					</li>
 				</ul>
 			</div>
