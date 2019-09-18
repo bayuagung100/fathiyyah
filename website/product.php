@@ -52,19 +52,19 @@ if ($produk['gambar5']) {
 
 			<div class="col-md-6" style="padding: 20px">
 				<div class="list-content" id="gambar">
-					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic;?>">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic;?>">
 				</div>
 				<div class="list-content" id="gambar2">
-					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic2;?>">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic2;?>">
 				</div>
 				<div class="list-content" id="gambar3">
-					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic3;?>">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic3;?>">
 				</div>
 				<div class="list-content" id="gambar4">
-					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic4;?>">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic4;?>">
 				</div>
 				<div class="list-content" id="gambar5">
-					<img class="text-center" style="max-height: 400px;width: 100%" src="<?php echo $pic5;?>">
+					<img class="text-center" style="max-height: 100%;width: 100%" src="<?php echo $pic5;?>">
 				</div>
 
 				<ul class="list-inline" style="padding: 20px">
