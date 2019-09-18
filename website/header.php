@@ -47,12 +47,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <form action="<?php echo $set['url'];?>search/" method="post"style="padding: 15px">
               <input type="text" placeholder="Search Product..." name="kata">
               <button type="submit" style="border-radius: 5px;font-size:18px;color:#a5758c;"><i class="fa fa-search"></i></button>
             </form>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="<?php echo $set["url"];?>">Home</a>
           </li>
