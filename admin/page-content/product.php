@@ -1,3 +1,5 @@
+<script type="text/javascript" src="vendor/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="js/tinymce_config.js"></script>
 <?php
 if(!defined("INDEX")) header('location: ../index.php');
 
@@ -86,7 +88,7 @@ switch($show){
 		}
 		buat_combobox("Category", "category", $list, $data['category']);
 
-		buat_textarea("Deskripsi", "deskripsi", $data['deskripsi']);
+		buat_textarea("Deskripsi", "deskripsi", $data['deskripsi'], 'richtext');
 		
 		tutup_form($link);
 

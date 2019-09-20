@@ -8,7 +8,7 @@ try {
     include 'include/utils.php';
 
     if ($_SESSION['RF']["verify"] != "RESPONSIVEfilemanager") {
-        response(trans('forbiden') . AddErrorLocation(), 403)->send();
+        response(trans('forbidden') . AddErrorLocation(), 403)->send();
         exit;
     }
 
@@ -35,7 +35,7 @@ try {
     $fldr = rawurldecode(trim(strip_tags($_POST['fldr']), "/") . "/");
 
     if (!checkRelativePath($fldr)) {
-        response(trans('wrong path'))->send();
+        response(trans('wrong path') . AddErrorLocation())->send();
         exit;
     }
 
@@ -67,10 +67,10 @@ try {
     // make sure the length is limited to avoid DOS attacks
     if (isset($_POST['url']) && strlen($_POST['url']) < 2000) {
         $url = $_POST['url'];
-        $urlPattern = '/^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/i';
+        $urlPattern = '/^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/?=&#]{1}[\da-z\.-]+)*[\/\?]?$/i';
 
         if (preg_match($urlPattern, $url)) {
-            $temp = tempnam('/tmp', 'RF');
+            $temp = tempnam('/tmp','RF');
 
             $ch = curl_init($url);
             $fp = fopen($temp, 'wb');
@@ -105,7 +105,6 @@ try {
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mime_type = finfo_file($finfo, $_FILES['files']['tmp_name'][0]);
         } else {
-            include 'include/mime_type_lib.php';
             $mime_type = get_file_mime_type($_FILES['files']['tmp_name'][0]);
         }
         $extension = get_extension_from_mime($mime_type);
@@ -119,12 +118,19 @@ try {
     }
     $_FILES['files']['name'][0] = fix_filename($filename, $config);
 
+    if(!$_FILES['files']['type'][0]){
+        $_FILES['files']['type'][0] = $mime_type;
 
+    }
     // LowerCase
     if ($config['lower_case']) {
         $_FILES['files']['name'][0] = fix_strtolower($_FILES['files']['name'][0]);
     }
     if (!checkresultingsize($_FILES['files']['size'][0])) {
+    	if ( !isset($upload_handler->response['files'][0]) ) {
+            // Avoid " Warning: Creating default object from empty value ... "
+            $upload_handler->response['files'][0] = new stdClass();
+        }
         $upload_handler->response['files'][0]->error = sprintf(trans('max_size_reached'), $config['MaxSizeTotal']) . AddErrorLocation();
         echo json_encode($upload_handler->response);
         exit();
@@ -142,15 +148,18 @@ try {
         'correct_image_extensions' => true,
         'print_response' => false
     );
+
     if (!$config['ext_blacklist']) {
         $uploadConfig['accept_file_types'] = '/\.(' . implode('|', $config['ext']) . ')$/i';
-        if($config['files_without_extension']){
-        	$uploadConfig['accept_file_types'] = '/((\.(' . implode('|', $config['ext']) . ')$)|(^[^.]+$))$/i';
+
+        if ($config['files_without_extension']) {
+            $uploadConfig['accept_file_types'] = '/((\.(' . implode('|', $config['ext']) . ')$)|(^[^.]+$))$/i';
         }
     } else {
         $uploadConfig['accept_file_types'] = '/\.(?!' . implode('|', $config['ext_blacklist']) . '$)/i';
-        if($config['files_without_extension']){
-        	$uploadConfig['accept_file_types'] = '/((\.(?!' . implode('|', $config['ext_blacklist']) . '$))|(^[^.]+$))/i';
+
+        if ($config['files_without_extension']) {
+            $uploadConfig['accept_file_types'] = '/((\.(?!' . implode('|', $config['ext_blacklist']) . '$))|(^[^.]+$))/i';
         }
     }
 
@@ -158,15 +167,19 @@ try {
         if (!is_dir($config['ftp_temp_folder'])) {
             mkdir($config['ftp_temp_folder'], $config['folderPermission'], true);
         }
+
         if (!is_dir($config['ftp_temp_folder'] . "thumbs")) {
             mkdir($config['ftp_temp_folder'] . "thumbs", $config['folderPermission'], true);
         }
+
         $uploadConfig['upload_dir'] = $config['ftp_temp_folder'];
     }
 
+    //print_r($_FILES);die();
     $upload_handler = new UploadHandler($uploadConfig, true, $messages);
 } catch (Exception $e) {
     $return = array();
+
     if ($_FILES['files']) {
         foreach ($_FILES['files']['name'] as $i => $name) {
             $return[] = array(
@@ -181,5 +194,5 @@ try {
         return;
     }
 
-    echo json_encode(array("error" =>$e->getMessage()));
+    echo json_encode(array("error" => $e->getMessage()));
 }

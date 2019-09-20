@@ -39,7 +39,7 @@
 				<div class="portfolio-caption">
 				<h3>'.$np.'</h3>
 				<h6>'.rupiah($hp).'</h6>
-				<p class="text-muted">'.$dp.'</p>
+				<p class="text-muted">'.limit_words($dp, 10).'</p>
 				</div>
 				</div>
 				';

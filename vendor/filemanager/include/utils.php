@@ -1,6 +1,6 @@
 <?php
 
-if ($_SESSION['RF']["verify"] != "RESPONSIVEfilemanager")
+if (!isset($_SESSION['RF']) || $_SESSION['RF']["verify"] != "RESPONSIVEfilemanager")
 {
 	die('forbiden');
 }
@@ -95,7 +95,19 @@ if ( ! function_exists('trans'))
 }
 
 
-
+function checkRelativePathPartial($path){
+	if (strpos($path, '../') !== false
+        || strpos($path, './') !== false
+        || strpos($path, '/..') !== false
+        || strpos($path, '..\\') !== false
+        || strpos($path, '\\..') !== false
+        || strpos($path, '.\\') !== false
+        || $path === ".."
+    ){
+		return false;
+    }
+    return true;
+}
 
 /**
 * Check relative path
@@ -105,19 +117,30 @@ if ( ! function_exists('trans'))
 * @return boolean is it correct?
 */
 function checkRelativePath($path){
-	$path_correct = true;
-	$path_decoded = rawurldecode($path);
-	if (strpos($path, '../') !== false
-        || strpos($path, './') !== false
-        || strpos($path, '..\\') !== false
-        || strpos($path, '.\\') !== false
-    	|| strpos($path_decoded, '../') !== false
-        || strpos($path_decoded, './') !== false
-        || strpos($path_decoded, '..\\') !== false
-        || strpos($path_decoded, '.\\') !== false) {
-        $path_correct = false;
-    }
+	$path_correct = checkRelativePathPartial($path);
+	if($path_correct){
+		$path_decoded = rawurldecode($path);
+		$path_correct = checkRelativePathPartial($path_decoded);
+	}
     return $path_correct;
+}
+
+/**
+* Check if the given path is an upload dir based on config
+*
+* @param  string  $path
+* @param  array $config
+*
+* @return boolean is it an upload dir?
+*/
+function isUploadDir($path, $config){
+	$upload_dir = $config['current_path'];
+	$thumbs_dir = $config['thumbs_base_path'];
+	if (realpath($path) === realpath($upload_dir) || realpath($path) === realpath($thumbs_dir))
+	{
+		return true;
+	}
+	return false;
 }
 
 /**
@@ -197,7 +220,7 @@ function deleteDir($dir,$ftp = null, $config = null)
 		}
 
 	}else{
-		if ( ! file_exists($dir))
+		if ( ! file_exists($dir) || isUploadDir($dir, $config))
 		{
 			return false;
 		}
@@ -245,7 +268,7 @@ function duplicate_file( $old_path, $name, $ftp = null, $config = null )
 			return null;
 		}
 	}else{
-		if (file_exists($old_path))
+		if (file_exists($old_path) && is_file($old_path))
 		{
 			if (file_exists($new_path) && $old_path == $new_path)
 			{
@@ -279,7 +302,7 @@ function rename_file($old_path, $name, $ftp = null, $config = null)
 			return false;
 		}
 	}else{
-		if (file_exists($old_path))
+		if (file_exists($old_path) && is_file($old_path))
 		{
 			$new_path = $info['dirname'] . "/" . $name . "." . $info['extension'];
 			if (file_exists($new_path) && $old_path == $new_path)
@@ -328,13 +351,12 @@ function rename_folder($old_path, $name, $ftp = null, $config = null)
 			return $ftp->rename("/".$old_path, "/".$new_path);
 		}
 	}else{
-		if (file_exists($old_path))
+		if (file_exists($old_path) && is_dir($old_path) && !isUploadDir($old_path, $config))
 		{
 			if (file_exists($new_path) && $old_path == $new_path)
 			{
 				return false;
 			}
-
 			return rename($old_path, $new_path);
 		}
 	}
@@ -681,6 +703,20 @@ function check_extension($extension,$config){
 }
 
 
+
+
+/**
+* Sanitize filename
+*
+* @param  string  $str
+*
+* @return string
+*/
+function sanitize($str)
+{
+	return strip_tags(htmlspecialchars($str));
+}
+
 /**
 * Cleanup filename
 *
@@ -694,6 +730,7 @@ function check_extension($extension,$config){
 */
 function fix_filename($str, $config, $is_folder = false)
 {
+	$str = sanitize($str);
 	if ($config['convert_spaces'])
 	{
 		$str = str_replace(' ', $config['replace_with'], $str);
@@ -835,7 +872,12 @@ function image_check_memory_usage($img, $max_breedte, $max_hoogte)
 		$K64 = 65536; // number of bytes in 64K
 		$memory_usage = memory_get_usage();
 		if(ini_get('memory_limit') > 0 ){
-			$memory_limit = abs(intval(str_replace('M', '', ini_get('memory_limit')) * 1024 * 1024));
+			
+			$mem = ini_get('memory_limit');
+			$memory_limit = 0;
+			if (strpos($mem, 'M') !== false) $memory_limit = abs(intval(str_replace(array('M'), '', $mem) * 1024 * 1024));
+			if (strpos($mem, 'G') !== false) $memory_limit = abs(intval(str_replace(array('G'), '', $mem) * 1024 * 1024 * 1024));
+			
 			$image_properties = getimagesize($img);
 			$image_width = $image_properties[0];
 			$image_height = $image_properties[1];
