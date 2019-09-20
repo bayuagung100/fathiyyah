@@ -75,25 +75,15 @@
       </div>
     </div>
   </nav>
-	<br>
-	<br>
-	<br>
-	<br>
+
   <!-- Header -->
-  <!--<header class="masthead">
+  <header class="masthead">
     <div class="container">
-      <div class="intro-text">-->
+      <div class="intro-text">
         <!-- <div class="intro-lead-in">Welcome To Our Company!</div> -->
         <!-- <div class="intro-heading text-uppercase">It's Nice To Meet You</div> -->
         <!-- <a class="btn btn-primary text-uppercase js-scroll-trigger" href="#about">See More <i class="fas fas fa-angle-double-down"></i></a> -->
 
-    <!--  </div>
+      </div>
     </div>
-  </header>-->
-  <div class="container">
-	<div class="embed-responsive embed-responsive-16by9">
-		<iframe class="embed-responsive-item" 
-		src="https://drive.google.com/file/d/1dEReQzJ20BsCtNhBsNSrQlDcmEEcaUpI/preview"
-		allowfullscreen="allowfullscreen"></iframe>
-	</div>
-  </div>
+  </header>

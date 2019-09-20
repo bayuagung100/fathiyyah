@@ -60,7 +60,7 @@
 
     <div class="row">
       <?php 
-      $query = mysqli_query($mysqli,"SELECT * FROM product ORDER BY RAND() limit 6");
+      $query = mysqli_query($mysqli,"SELECT * FROM product ORDER BY id DESC");
       while ($data = mysqli_fetch_array($query)) {
         $ip = $data['id'];
         $np = $data['nama_product'];
@@ -82,20 +82,17 @@
         <i class="fas fa-eye fa-3x"></i>
         </div>
         </div>
-        <img class="img-product-home" src="'.$pic.'" alt="'.$np.'">
+        <img class="img-product-home" src="'.$pic.'" alt="">
         </a>
         <div class="portfolio-caption">
         <h3>'.$np.'</h3>
         <h6>'.rupiah($hp).'</h6>
-        <p class="text-muted">'.limit_words($dp, 10).'</p>
+        <p class="text-muted">'.$dp.'</p>
         </div>
         </div>
         ';
       }
       ?>
-      <div class="text-center col-md-12 col-sm-12">
-       <h5><a href="product/">Lihat Semua</a></h5>
-      </div>
     </div>
 
   </div>

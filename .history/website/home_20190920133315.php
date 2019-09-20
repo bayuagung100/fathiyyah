@@ -93,9 +93,6 @@
         ';
       }
       ?>
-      <div class="text-center col-md-12 col-sm-12">
-       <h5><a href="product/">Lihat Semua</a></h5>
-      </div>
     </div>
 
   </div>
