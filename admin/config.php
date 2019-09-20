@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "u328098603_fathi";
 $password = "lalaLand123";
-$database = "u328098603_fathi";
+$database = "u328098603_fathi"; 
 
 //local-server
 // $servername = "sql261.main-hosting.eu";
