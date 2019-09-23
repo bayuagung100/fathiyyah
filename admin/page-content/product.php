@@ -33,7 +33,7 @@ switch($show){
 
 		$gambar = $data['gambar'];
 		if($gambar){
-			$pic = "../media/source/".$gambar;
+			$pic = "../media/thumbs/".$gambar;
 		}else{
 			$pic = "../img/noimage.jpg";
 		}
@@ -57,7 +57,7 @@ switch($show){
 		$data= $query->fetch_array();
 		$aksi 	= "Edit";
 	}else{
-		$data = array("id"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "gambar6"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
+		$data = array("id"=>"", "kd_product"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "gambar6"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
 		$aksi 	= "Tambah";
 	}
 
@@ -72,6 +72,7 @@ switch($show){
 		';	
 		buka_form($link, $data['id'], strtolower($aksi));
 		buat_textbox("Nama Product", "nama_product", $data['nama_product'], 5);
+		buat_textbox("Kode Product", "kd_product", $data['kd_product'], 4);
 		buat_textbox("Harga", "harga", $data['harga'], 4);
 		buat_imagepicker("Gambar 1", "gambar", $data['gambar']);
 		buat_imagepicker("Gambar 2", "gambar2", $data['gambar2']);
@@ -100,6 +101,7 @@ switch($show){
 	//Menyisipkan atau mengedit data di database
 	case "action":
 	$nama_product	= ucwords(addslashes($_POST['nama_product']));
+	$kd_product		= addslashes($_POST['kd_product']);
 	$gambar 	= $_POST[gambar];
 	$gambar2 	= $_POST[gambar2];
 	$gambar3	= $_POST[gambar3];
@@ -116,6 +118,7 @@ switch($show){
 		$query 	= $mysqli->query ( "INSERT INTO product 
 			(
 			nama_product,
+			kd_product,
 			gambar,
 			gambar2,
 			gambar3,
@@ -128,6 +131,7 @@ switch($show){
 			) values
 			(
 			'$nama_product',
+			'$kd_product',
 			'$gambar',
 			'$gambar2',
 			'$gambar3',
@@ -142,6 +146,7 @@ switch($show){
 	}elseif($_POST['aksi'] == "edit"){
 		$query 	= $mysqli->query ( "UPDATE product SET
 			nama_product 		= '$nama_product',
+			kd_product 		= '$kd_product',
 			gambar 	= '$gambar',
 			gambar2 	= '$gambar2',
 			gambar3 	= '$gambar3',

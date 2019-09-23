@@ -37,6 +37,16 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
+      <a class="nav-link" href="?content=kasir">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Kasir</span>
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
       <a class="nav-link" href="?content=about">
         <i class="fas fa-fw fa-cog"></i>
         <span>Setting</span>
