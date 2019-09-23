@@ -75,10 +75,6 @@
       </div>
     </div>
   </nav>
-	<br>
-	<br>
-	<br>
-	<br>
   <!-- Header -->
   <!--<header class="masthead">
     <div class="container">
@@ -90,10 +86,3 @@
     <!--  </div>
     </div>
   </header>-->
-  <div class="container">
-	<div class="embed-responsive embed-responsive-16by9">
-		<iframe class="embed-responsive-item" 
-		src="https://drive.google.com/file/d/1dEReQzJ20BsCtNhBsNSrQlDcmEEcaUpI/preview"
-		allowfullscreen="allowfullscreen"></iframe>
-	</div>
-  </div>

@@ -1,4 +1,15 @@
 <?php include 'header.php'; ?>
+  <br>
+	<br>
+	<br>
+	<br>
+  <div class="container">
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe class="embed-responsive-item" 
+		src="https://drive.google.com/file/d/1dEReQzJ20BsCtNhBsNSrQlDcmEEcaUpI/preview"
+		allowfullscreen="allowfullscreen"></iframe>
+	</div>
+  </div>
 <!-- Portfolio Grid -->
 <section class="bg-light page-section" id="portfolio">
   <div class="container">
@@ -85,7 +96,7 @@
         <img class="img-product-home" src="'.$pic.'" alt="'.$np.'">
         </a>
         <div class="portfolio-caption">
-        <h3>'.$np.'</h3>
+        <a href="product/'.$ip.'/detail/"><h3>'.$np.'</h3></a>
         <h6>'.rupiah($hp).'</h6>
         <p class="text-muted">'.limit_words($dp, 10).'</p>
         </div>
