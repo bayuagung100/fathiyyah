@@ -37,7 +37,7 @@
 				<img class="img-product-home lazy" data-original="'.$pic.'" src="../img/loader.gif" alt="'.$np.'">
 				</a>
 				<div class="portfolio-caption">
-				<h3>'.$np.'</h3>
+				<a href="'.$ip.'/detail/"><h3>'.$np.'</h3></a>
 				<h6>'.rupiah($hp).'</h6>
 				<p class="text-muted">'.limit_words($dp, 10).'</p>
 				</div>
