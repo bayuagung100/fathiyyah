@@ -34,7 +34,7 @@
 				<i class="fas fa-eye fa-3x"></i>
 				</div>
 				</div>
-				<img class="img-product-home lazy" data-original="'.$pic.'" src="img/loader.gif" alt="'.$np.'">
+				<img class="img-product-home lazy" data-original="'.$pic.'" src="../img/loader.gif" alt="'.$np.'">
 				</a>
 				<div class="portfolio-caption">
 				<h3>'.$np.'</h3>
