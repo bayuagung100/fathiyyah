@@ -57,42 +57,42 @@ if ($produk['gambar6']) {
 
 			<div class="col-md-6" style="padding: 20px">
 				<div class="list-content" id="gambar">
-					<img class="text-center detail-pic" src="<?php echo $pic;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic;?>" src="../../../img/loader.gif">
 				</div>
 				<div class="list-content" id="gambar2">
-					<img class="text-center detail-pic" src="<?php echo $pic2;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic2;?>" src="../../../img/loader.gif">
 				</div>
 				<div class="list-content" id="gambar3">
-					<img class="text-center detail-pic" src="<?php echo $pic3;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic3;?>" src="../../../img/loader.gif">
 				</div>
 				<div class="list-content" id="gambar4">
-					<img class="text-center detail-pic" src="<?php echo $pic4;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic4;?>" src="../../../img/loader.gif">
 				</div>
 				<div class="list-content" id="gambar5">
-					<img class="text-center detail-pic" src="<?php echo $pic5;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic5;?>" src="../../../img/loader.gif">
 				</div>
 				<div class="list-content" id="gambar6">
-					<img class="text-center detail-pic" src="<?php echo $pic6;?>">
+					<img class="text-center detail-pic lazy" data-original="<?php echo $pic6;?>" src="../../../img/loader.gif">
 				</div>
 
 				<ul class="list-inline" style="padding: 20px">
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar')" id="defaultOpen">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic;?>" src="../../../img/loader.gif">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar2')">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic2;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic2;?>" src="../../../img/loader.gif">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar3')">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic3;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic3;?>" src="../../../img/loader.gif">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar4')">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic4;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic4;?>" src="../../../img/loader.gif">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar5')">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic5;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic5;?>" src="../../../img/loader.gif">
 					</li>
 					<li class="list-link" style="display: inline-block;padding-top: 5px" onclick="openImage(event, 'gambar6')">
-						<img style="max-height: 50px;width: 50px" src="<?php echo $pic6;?>">
+						<img style="max-height: 50px;width: 50px" class="lazy" data-original="<?php echo $pic6;?>" src="../../../img/loader.gif">
 					</li>
 				</ul>
 			</div>
