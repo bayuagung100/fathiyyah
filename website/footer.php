@@ -29,6 +29,7 @@
 
 <!-- Bootstrap core JavaScript -->
 <script src="<?php echo $set["url"];?>vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo $set["url"];?>js/jquery.lazyload.js"></script>
 <script src="<?php echo $set["url"];?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Plugin JavaScript -->
@@ -40,7 +41,12 @@
 
 <!-- Custom scripts for this template -->
 <script src="<?php echo $set["url"];?>js/agency.min.js"></script>
-
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+      $("img.lazy").lazyload({effect : "fadeIn"});// untuk dipasang di <img src='xxxx'>
+      
+      });
+      </script>
 </body>
 
 </html>
