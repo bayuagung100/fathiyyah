@@ -124,7 +124,7 @@ if ($produk['gambar6']) {
 				<br>
 				<br>
 				<br>
-				<form method="get" action="http://localhost/fathiyyah/cart.php">
+				<form method="get" action="<?php echo $set["url"];?>cart.php">
 				<input type="hidden" name="id" value="<?php echo $ip;?>">
 				<p>Ukuran: 
 						<select name="ukuran" required>
