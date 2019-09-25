@@ -1,5 +1,5 @@
 <?php include 'header.php';
-
+$ip = $_GET[id];
 $query = mysqli_query($mysqli,"SELECT * FROM product WHERE id='$_GET[id]'");
 $produk = mysqli_fetch_array($query); 
 $query2 = mysqli_query($mysqli,"SELECT * FROM cat_product WHERE id=$produk[category] ");
@@ -124,7 +124,8 @@ if ($produk['gambar6']) {
 				<br>
 				<br>
 				<br>
-				<form method="get" action="">
+				<form method="get" action="http://localhost/fathiyyah/cart.php">
+				<input type="hidden" name="id" value="<?php echo $ip;?>">
 				<p>Ukuran: 
 						<select name="ukuran" required>
 							<option>S</option>
@@ -133,10 +134,13 @@ if ($produk['gambar6']) {
 							<option>XL</option>
 						</select>
 				</p>
-				<p>Jumlah: <input type="number" name="jumlah" min="1" max="100" value="1" required> Tersisa </p>
-				<button type="submit" class="btn btn-cart">Add to Cart</button>
+				<p>Jumlah: <input size="5" type="number" name="jumlah" min="1" max="100" value="1" required> Tersisa </p>
+				<button type="submit" class="btn btn-cart"><i class='fas fa-cart-plus'></i> Add to Cart</button>
+				<br>
+				<br>
+				<a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Halo, saya tertarik dengan produk *<?php echo $produk['nama_product'];?>* yang anda jual." target="_blank" class="btn" style='background-color:#a5758c;color:white'><img src="<?php echo $set["url"];?>img/wa.png" style="width: 34px;height: 34px"> Order Now</a>
 				</form>
-				<a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Halo, saya tertarik dengan produk *<?php echo $produk['nama_product'];?>* yang anda jual." target="_blank" class="btn" style='background-color:#a5758c;color:white'><h3><img src="<?php echo $set["url"];?>img/wa.png" style="width: 34px;height: 34px"> Order Now</h3></a>
+				<!-- <a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Halo, saya tertarik dengan produk *<?php echo $produk['nama_product'];?>* yang anda jual." target="_blank" class="btn" style='background-color:#a5758c;color:white'><h3><img src="<?php echo $set["url"];?>img/wa.png" style="width: 34px;height: 34px"> Order Now</h3></a> -->
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,8 @@
 <?php
 error_reporting();
 ob_start();
-
+session_start();
+$sesi = session_id();
 include "admin/config.php";
 include "func/func_date.php";
 

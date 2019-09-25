@@ -34,7 +34,7 @@ $tgl_sekarang = date("d");
 $bln_sekarang = date("m");
 $thn_sekarang = date("Y");
 
-$tanggal 	= date("Y-m-d H:i:s");  
+$tanggal 	= date("Y-m-d");  
 $jam 		= date("H:i:s");
 
 function rupiah($angka){

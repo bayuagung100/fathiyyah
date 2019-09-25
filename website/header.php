@@ -75,7 +75,10 @@
       </div>
       <ul class="navbar-nav text-uppercase">
           <li >
-            <a class="btn btn-primary" href="<?php echo $set["url"];?>cart/"><i class='fas fa-shopping-bag'></i> <span>0</span></a>
+          <?php $query = mysqli_query($mysqli,"SELECT count(*) as total from order_temp WHERE id_session='$sesi' ");
+          $count = mysqli_fetch_assoc($query);
+          ?>
+            <a class="btn btn-primary" href="<?php echo $set["url"];?>cart/"><i class='fas fa-shopping-bag'></i> <span><?php echo $count['total'];?></span></a>
           </li>
       </ul>
     </div>
