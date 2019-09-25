@@ -1,7 +1,7 @@
 
  <?php
 //server hosting
-// $servername = "localhost";
+$servername = "localhost";
 $username = "u328098603_fathi";
 $password = "lalaLand123";
 $database = "u328098603_fathi"; 

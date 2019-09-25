@@ -73,6 +73,11 @@
           </li> -->
         </ul>
       </div>
+      <ul class="navbar-nav text-uppercase">
+          <li >
+            <a class="btn btn-primary" href="<?php echo $set["url"];?>cart/"><i class='fas fa-shopping-bag'></i> <span>0</span></a>
+          </li>
+      </ul>
     </div>
   </nav>
   <!-- Header -->

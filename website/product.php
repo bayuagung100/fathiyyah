@@ -124,6 +124,18 @@ if ($produk['gambar6']) {
 				<br>
 				<br>
 				<br>
+				<form method="get" action="">
+				<p>Ukuran: 
+						<select name="ukuran" required>
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+							<option>XL</option>
+						</select>
+				</p>
+				<p>Jumlah: <input type="number" name="jumlah" min="1" max="100" value="1" required> Tersisa </p>
+				<button type="submit" class="btn btn-cart">Add to Cart</button>
+				</form>
 				<a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Halo, saya tertarik dengan produk *<?php echo $produk['nama_product'];?>* yang anda jual." target="_blank" class="btn" style='background-color:#a5758c;color:white'><h3><img src="<?php echo $set["url"];?>img/wa.png" style="width: 34px;height: 34px"> Order Now</h3></a>
 			</div>
 		</div>

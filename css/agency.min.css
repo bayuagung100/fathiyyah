@@ -122,6 +122,9 @@ img::-moz-selection {
 	background-color: #f9beda;
 	border-color: #f9beda
 }
+.btn-cart{
+	border-color: #f9beda;
+}
 
 .btn-primary:active,
 .btn-primary:focus,
@@ -186,7 +189,7 @@ img::-moz-selection {
 		-webkit-transition: padding-top .3s, padding-bottom .3s;
 		transition: padding-top .3s, padding-bottom .3s;
 		border: none;
-		background-color: transparent
+		/* background-color: transparent */
 	}
 
 	#mainNav .navbar-brand {
@@ -759,6 +762,8 @@ ul.social-buttons li a:hover {
 	opacity: 0.6;
 	z-index: 999;
 }
+
+
 
 ul.breadcrumb {
 	padding: 10px 16px;
