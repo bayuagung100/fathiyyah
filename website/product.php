@@ -124,7 +124,8 @@ if ($produk['gambar6']) {
 				<br>
 				<br>
 				<br>
-				<form method="get" action="<?php echo $set["url"];?>cart.php">
+				<!-- <form method="get" action="<?php echo $set["url"];?>cart.php"> -->
+				<form method="get" action="http://localhost/fathiyyah/cart.php">
 				<input type="hidden" name="id" value="<?php echo $ip;?>">
 				<p>Ukuran: 
 						<select name="ukuran" required>
@@ -134,7 +135,7 @@ if ($produk['gambar6']) {
 							<option>XL</option>
 						</select>
 				</p>
-				<p>Jumlah: <input size="5" type="number" name="jumlah" min="1" max="100" value="1" required> Tersisa </p>
+				<p>Jumlah: <input size="5" type="number" name="jumlah" min="1" max="100" value="1" required></p>
 				<button type="submit" class="btn btn-cart"><i class='fas fa-cart-plus'></i> Add to Cart</button>
 				<br>
 				<br>
