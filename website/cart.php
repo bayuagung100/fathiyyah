@@ -17,12 +17,12 @@
 			if ($cek > 0) {
 				echo '
 				<div class="col-md-12">
-				<table class="text-center" style="overflow-x:auto;">
+				<table class="table table-xs">
 					<tr>
 						<th>ITEM NAME</th>
-						<th>QUANTITY</th>
-						<th>PRICE</th>
-						<th>ITEMS TOTAL</th>
+						<th class="text-right">QUANTITY</th>
+						<th class="text-right">PRICE</th>
+						<th class="text-right">ITEMS TOTAL</th>
 					</tr>
 				';	
 				$total=0;
@@ -40,22 +40,20 @@
 							$it = $jp*$hp;
 							$total += $it;
 				echo'
-					<tr>
+					<tr class="item-row">
 						<td><h5>'.$np.'</h5><br><img class="img-product-home text-center lazy" style="max-width:100px;max-height:100px" data-original="'.$pic.'" src="../img/loader.gif"></td>
-						<td>'.$jp.'</td>
-						<td>'.rupiah($hp).'</td>
-						<td>'.rupiah($it).'</td>
+						<td class="text-right" title="Quantity">'.$jp.'</td>
+						<td class="text-right" title="Price"'.rupiah($hp).'</td>
+						<td class="text-right" title="Items Total"'.rupiah($it).'</td>
 						<td><a href="'.$set["url"].'action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
 						}
 					}
 				echo'
-					<tr>
-						<td></td>
-						<td></td>
-						<td><b>Total </b></td>
-						<td>'.rupiah($total).'</td>
+					<tr class="total-row info">
+						<td class="text-right" colspan="4"><b>Total</b></td>
+						<td class="text-right">'.rupiah($total).'</td>
 					</tr>
 				</table>
 				</div>
