@@ -43,8 +43,8 @@
 					<tr class="item-row">
 						<td><h5>'.$np.'</h5><br><img class="img-product-home text-center lazy" style="max-width:100px;max-height:100px" data-original="'.$pic.'" src="../img/loader.gif"></td>
 						<td class="text-right" title="Quantity">'.$jp.'</td>
-						<td class="text-right" title="Price"'.rupiah($hp).'</td>
-						<td class="text-right" title="Items Total"'.rupiah($it).'</td>
+						<td class="text-right" title="Price">'.rupiah($hp).'</td>
+						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
 						<td><a href="'.$set["url"].'action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
