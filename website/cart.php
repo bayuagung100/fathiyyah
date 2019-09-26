@@ -38,7 +38,7 @@
 							$hp = $dp['harga'];
 
 							$it = $jp*$hp;
-							$grandtotal = $total + $it;
+							$total += $it;
 				echo'
 					<tr>
 						<td><h5>'.$np.'</h5><br><img class="img-product-home text-center lazy" style="max-width:100px;max-height:100px" data-original="'.$pic.'" src="../img/loader.gif"></td>
@@ -55,7 +55,7 @@
 						<td></td>
 						<td></td>
 						<td><b>Total </b></td>
-						<td>'.rupiah($grandtotal).'</td>
+						<td>'.rupiah($total).'</td>
 					</tr>
 				</table>
 				</div>
