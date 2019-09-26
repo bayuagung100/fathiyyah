@@ -52,9 +52,10 @@
 						}
 					}
 				echo'
-					<tr class="total-row info">
-						<td class="text-right" colspan="4"><b>Total</b></td>
+					<tr class="total-row info" style="background: #d9edf7;">
+						<td class="text-right" colspan="3"><b>Total:</b></td>
 						<td class="text-right">'.rupiah($total).'</td>
+						<td></td>
 					</tr>
 				</table>
 				</div>

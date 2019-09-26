@@ -862,5 +862,8 @@ ul.breadcrumb li+li:before {
 	.table-xs .total-row td:first-child {
 	  width: 99%;
 	}
+	.table-xs .total-row .info {
+		background: #d9edf7;
+	  }
   }
   
