@@ -23,6 +23,7 @@
 						<th class="text-right">QUANTITY</th>
 						<th class="text-right">PRICE</th>
 						<th class="text-right">ITEMS TOTAL</th>
+						<th></th>
 					</tr>
 				';	
 				$total=0;
