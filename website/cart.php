@@ -45,7 +45,7 @@
 						<td>'.$jp.'</td>
 						<td>'.rupiah($hp).'</td>
 						<td>'.rupiah($it).'</td>
-						<td><a href="http://localhost/fathiyyah/action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
+						<td><a href="'.$set["url"].'action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
 						}
