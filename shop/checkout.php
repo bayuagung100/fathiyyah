@@ -14,16 +14,24 @@ include '../website/header.php';
             </div>
             
             <div class="col-md-8">
+				<?php 
+					$query = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
+					$data = mysqli_fetch_array($query);
+					
+					$nt = str_replace('-', '', $data['tanggal']).$data['id'].$data['id_produk'];
+				?>
                 <div class="card">
                 <h3 class="text-center"><b>Billing Information</b></h3>
                 <hr>
 				<form method="get" action="<?php echo $set["url"];?>shop/action.php">
+					<input type="hidden" name="aksi" value="billing">
+					<input type="hidden" name="no_tagihan" value="<?php echo $nt;?>">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Name</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="fullname" name="fullname" placeholder="Full Name">
+						<input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
 						</div>
 					</div>
 					<div class="row">
@@ -31,7 +39,7 @@ include '../website/header.php';
 						<label for="email">Email</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="email" name="email" placeholder="name@example.com">
+						<input type="text" id="email" name="email" placeholder="name@example.com" required>
 						</div>
 					</div>
 					<div class="row">
@@ -39,7 +47,7 @@ include '../website/header.php';
 						<label for="hp">Phone</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx">
+						<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required>
 						</div>
 					</div>
 					<div class="row">
@@ -47,13 +55,13 @@ include '../website/header.php';
 						<label for="city">City</label>
 						</div>
 						<div class="col-md-4">
-						<input type="text" id="city" name="city" placeholder="Jakarta">
+						<input type="text" id="city" name="city" placeholder="Jakarta" required>
 						</div>
 						<div class="col-md-2">
 						<label for="pos">Postal Code</label>
 						</div>
 						<div class="col-md-4">
-						<input type="text" id="pos" name="pos" placeholder="15710">
+						<input type="text" id="pos" name="pos" placeholder="15710" required>
 						</div>
 					</div>
 					<div class="row">
@@ -61,29 +69,27 @@ include '../website/header.php';
 						<label for="alamat">Shipping Address</label>
 						</div>
 						<div class="col-md-10">
-						<textarea id="alamat" name="alamat" placeholder="Shipping Address" style="height:200px"></textarea>
+						<textarea id="alamat" name="alamat" placeholder="Shipping Address" style="height:200px" required></textarea>
 						</div>
 					</div>
+					<br>
 					<button type="submit" class="btn btn-cart">Continue to Payment</button>
 				</form>
                 </div>
             </div>
 
 			<?php 
-			$query = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-			$cek = mysqli_num_rows($query);
-			
-				echo '
-				
+				echo '				
 				<div class="col-md-4">
 				<div class="card">
                 <h3 class="text-center"><b>Summary Order</b></h3>
-                <hr>
+				<hr>
+				<p>No.Tagihan: '.$nt.'</p>
 				<table class="table table-xs">
 					<tr>
-						<th>ITEM NAME</th>
-						<th class="text-right">QUANTITY</th>
-						<th class="text-right">ITEMS TOTAL</th>
+						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				';	
 				$total=0;
@@ -102,7 +108,7 @@ include '../website/header.php';
 							$total += $it;
 				echo'
 					<tr class="item-row">
-						<td><a href="'.$set["url"].'product/'.$ip.'/detail/"><h5>'.$np.'</h5></a><br><img class="img-product-home text-center lazy" style="max-width:100px;max-height:100px" data-original="'.$pic.'" src="../img/loader.gif"></td>
+						<td><h5>'.$np.'</h5></td>
 						<td class="text-right" title="Quantity">'.$jp.'</td>
 						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
 					</tr>

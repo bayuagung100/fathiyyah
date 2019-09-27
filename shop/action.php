@@ -7,6 +7,58 @@ $id = $_GET['id'];
 $act = $_GET['act'];
 $pm = $_GET['method'];
 
+$aksi = $_GET['aksi'];
+$tagihan = $_GET['no_tagihan'];
+$nama = $_GET['fullname'];
+$email = $_GET['email'];
+$hp = $_GET['hp'];
+$city = $_GET['city'];
+$pos = $_GET['pos'];
+$alamat = $_GET['alamat'];
+
+if ($aksi=='billing') {
+    $query = mysqli_query($mysqli,"SELECT * FROM oreder_temp WHERE id_session='$sesi' ");
+    while ($data = mysqli_fetch_array($query)) {
+        $oid = $data['id'];
+        $oip = $data['id_produk'];
+        $oj = $data['jumlah'];
+        $uo = $data['ukuran'];
+        $ot = $data['tanggal'];
+        $query2 = mysqli_query($mysqli,"INSERT INTO order
+            (
+                no_tagihan,
+                id_produk,
+                jumlah,
+                ukuran,
+                tanggal,
+                nama,
+                email,
+                hp,
+                kota,
+                pos,
+                alamat,
+                payment,
+            )
+            VALUES
+            (
+                '$tagihan',
+                '$oip',
+                '$oj',
+                '$uo',
+                '$ot',
+                '$nama',
+                '$email',
+                '$hp',
+                '$city',
+                '$pos',
+                '$alamat',
+                'new'
+            )
+        ");
+    }
+    header('Location:../payment/');
+}
+
 if ($act=='delete') {
     $qdel = mysqli_query($mysqli,"DELETE FROM order_temp WHERE id='$id' AND id_session='$sesi' ");
     header('Location:'.$_SERVER['HTTP_REFERER']);
