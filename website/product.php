@@ -1,5 +1,5 @@
 <?php include 'header.php';
-$ip = $_GET[id];
+$ip = $_GET['id'];
 $query = mysqli_query($mysqli,"SELECT * FROM product WHERE id='$_GET[id]'");
 $produk = mysqli_fetch_array($query); 
 $query2 = mysqli_query($mysqli,"SELECT * FROM cat_product WHERE id=$produk[category] ");
@@ -124,8 +124,8 @@ if ($produk['gambar6']) {
 				<br>
 				<br>
 				<br>
-				<form method="get" action="<?php echo $set["url"];?>cart.php">
-				<!-- <form method="get" action="http://localhost/fathiyyah/cart.php"> -->
+				<form method="get" action="<?php echo $set["url"];?>shop/cart.php">
+				<!-- <form method="get" action="http://localhost/fathiyyah/shop/cart.php"> -->
 				<input type="hidden" name="id" value="<?php echo $ip;?>">
 				<p>Ukuran: 
 						<select name="ukuran" required>

@@ -1,7 +1,7 @@
 <?php
 
-include "admin/config.php";
-include "func/func_date.php";
+include "../admin/config.php";
+include "../func/func_date.php";
 $ip = $_GET['id'];
 $uk = $_GET['ukuran'];
 $jl = $_GET['jumlah'];
@@ -18,7 +18,7 @@ if ($ceking > 0){
     if ($tambah) {
         echo"
         <script>window.alert('Success, Add to Cart');
-        window.location=('cart/')</script>
+        window.location=('../cart/')</script>
         ";
     }else{
         echo"
@@ -49,7 +49,7 @@ if ($ceking > 0){
     if ($query) {
         echo"
         <script>window.alert('Success, Add to Cart');
-        window.location=('cart/')</script>
+        window.location=('../cart/')</script>
         ";
     }else{
         echo"

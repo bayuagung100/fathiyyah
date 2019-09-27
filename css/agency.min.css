@@ -126,6 +126,10 @@ img::-moz-selection {
 .btn-cart{
 	border-color: #f9beda;
 }
+.btn-checkout{
+	border-color: #f9beda;
+	height: 100px;
+}
 
 .btn-primary:active,
 .btn-primary:focus,
@@ -866,4 +870,26 @@ ul.breadcrumb li+li:before {
 		background: #d9edf7;
 	  }
   }
+
+  .card {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	width: 40%;
+	padding:10px;
+  }
   
+  .card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+  }
+  
+  label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+  }

@@ -1,4 +1,6 @@
-<?php include 'header.php';?>
+<?php include '../admin/config.php';
+include '../website/header.php';
+?>
 
 <section class="bg-light page-section" id="category">
 	<div class="container">
@@ -9,22 +11,38 @@
 					<li><a href="<?php echo $set["url"];?>">Home</a></li>
 					<li class="active">Cart</li>
 				</ul>
-			</div>
+            </div>
+            
+            <div class="col-md-7">
+                <div class="card text-center">
+                <h3><b>Payment Method</b></h3>
+                <hr>
+                <ul style="list-style: none;">
+                    <li style="padding:10px">
+                        <a href="" class="btn btn-cart"><img class="img-product-home" src="../img/bank-transfer.png"></a>         
+                    </li>
+                    <li style="padding:10px">
+                        <a href="<?php echo $set["url"];?>shop/action.php?act=payment&method=whatsapp" class="btn btn-cart"><img class="img-product-home" src="../img/whatsapp.png"></a>         
+                    </li>
+                </ul>
+                </div>
+            </div>
 
 			<?php 
 			$query = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
 			$cek = mysqli_num_rows($query);
-			if ($cek > 0) {
+			
 				echo '
-				<div class="col-md-12">
+				
+				<div class="col-md-5">
+				<div class="card">
+                <h3 class="text-center"><b>Summary Order</b></h3>
+                <hr>
 				<table class="table table-xs">
 					<tr>
 						<th>ITEM NAME</th>
-						<th class="text-right">SIZE</th>
 						<th class="text-right">QUANTITY</th>
-						<th class="text-right">PRICE</th>
 						<th class="text-right">ITEMS TOTAL</th>
-						<th></th>
 					</tr>
 				';	
 				$total=0;
@@ -33,7 +51,6 @@
 						$id = $dt['id'];
 						$ip = $dt['id_produk'];
 						$jp = $dt['jumlah'];
-						$uk = $dt['ukuran'];
 						$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
 						while ($dp = mysqli_fetch_array($tp)){
 							$np = $dp['nama_product'];
@@ -45,39 +62,24 @@
 				echo'
 					<tr class="item-row">
 						<td><a href="'.$set["url"].'product/'.$ip.'/detail/"><h5>'.$np.'</h5></a><br><img class="img-product-home text-center lazy" style="max-width:100px;max-height:100px" data-original="'.$pic.'" src="../img/loader.gif"></td>
-						<td class="text-right" title="Size">'.$uk.'</td>
 						<td class="text-right" title="Quantity">'.$jp.'</td>
-						<td class="text-right" title="Price">'.rupiah($hp).'</td>
 						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
-						<td><a href="'.$set["url"].'shop/action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
 						}
 					}
 				echo'
 					<tr class="total-row info" style="background: #d9edf7;">
-						<td class="text-right" colspan="4"><b>Total:</b></td>
+						<td class="text-right" colspan="2"><b>Total:</b></td>
 						<td class="text-right">'.rupiah($total).'</td>
-						<td></td>
+						
 					</tr>
 				</table>
 				</div>
-				';
-				echo'
-				<div class="col-md-12" style="text-align:center;">
-					<a class="btn btn-primary" href="'.$set["url"].'shop/action.php?act=checkout" style="color:#a5758c;"><h3><i class="fas fa-credit-card"></i> CheckOut</h3></a>
 				</div>
 				';
-			}else{
-				echo'
-				<div class="col-md-12" style="text-align:center;">
-					<img class="img-product-home" src="../img/emptycart.png" style="max-width:300px;max-height:300px">
-					<p><b>Your Cart Is Empty</b></p>
-					<br>
-					<a class="btn btn-primary" href="'.$set["url"].'product/" style="color:#a5758c;"><h3>Shop Now</h3></a>
-				</div>
-				';
-			}
+				
+			
 			?>
 
 
@@ -87,6 +89,6 @@
 	</div>
 </section>
 <?php 	
-include 'footer.php';
+include '../website/footer.php';
 ?>
 
