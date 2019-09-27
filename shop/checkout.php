@@ -31,7 +31,7 @@ include '../website/header.php';
 						<label for="email">Email</label>
 						</div>
 						<div class="col-md-10">
-						<input type="email" id="email" name="email" placeholder="name@example.com">
+						<input type="text" id="email" name="email" placeholder="name@example.com">
 						</div>
 					</div>
 					<div class="row">
