@@ -37,7 +37,7 @@ if ($aksi=='billing') {
                 kota,
                 pos,
                 alamat,
-                payment,
+                payment
             )
             VALUES
             (
