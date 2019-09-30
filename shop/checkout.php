@@ -23,7 +23,8 @@ include '../website/header.php';
                 <div class="card">
                 <h3 class="text-center"><b>Billing Information</b></h3>
                 <hr>
-				<form method="get" action="<?php echo $set["url"];?>shop/action.php">
+				<!-- <form method="get" action="<?php echo $set["url"];?>shop/action.php"> -->
+				<form method="get" action="http://localhost/fathiyyah/shop/billing.php">
 					<input type="hidden" name="aksi" value="billing">
 					<input type="hidden" name="no_tagihan" value="<?php echo $nt;?>">
 					<div class="row">
