@@ -2,18 +2,17 @@
 session_start();
 include '../admin/config.php';
 include '../website/header.php';
+if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
+    header('location: ../login/');
+  }else{
+    header('Location:../checkout/');
+  }
 ?>
 
 <section class="bg-light page-section" id="category">
 	<div class="container">
 
 		<div class="row" style="padding: 20px">
-			<div class="col-md-12 text-center" style="padding: 20px">
-				<ul class="breadcrumb">
-					<li><a href="<?php echo $set["url"];?>">Home</a></li>
-					<li class="active">Cart</li>
-				</ul>
-            </div>
             
             <div class="col-md-8">
 				<?php 
@@ -23,61 +22,62 @@ include '../website/header.php';
 					$nt = str_replace('-', '', $data['tanggal']).$data['id'].$data['id_produk'];
 				?>
                 <div class="card">
-                <h3 class="text-center"><b>Billing Information</b></h3>
+                <h3 class="text-center"><b>Login to Checkout</b></h3>
                 <hr>
-				<form method="get" action="<?php echo $set["url"];?>shop/billing.php">
-				<!-- <form method="get" action="http://localhost/fathiyyah/shop/billing.php"> -->
-					<input type="hidden" name="aksi" value="billing">
-					<input type="hidden" name="no_tagihan" value="<?php echo $nt;?>">
-					<input type="hidden" name="id_user_shop" value="<?php echo $_SESSION['id'];?>">
+                <?php
+                if(isset($_POST['login'])){
+                $username = $_POST['username'];
+                $password = md5($_POST['password']);
+
+                $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' AND password='$password'");
+                $jmluser = $cekuser->num_rows;
+                $data = $cekuser->fetch_array();
+
+                if ($jmluser> 0){
+                    $_SESSION['id']       = $data['id'];
+                    $_SESSION['user']     = $data['username'];
+                    $_SESSION['pass']  = $data['password'];
+                    $_SESSION['nama']     = $data['nama'];
+                    $_SESSION['email']       = $data['email'];
+                    $_SESSION['hp']    = $data['hp'];
+                    $_SESSION['city']    = $data['city'];
+                    $_SESSION['pos']    = $data['pos'];
+                    $_SESSION['alamat']    = $data['alamat'];
+                    
+                   
+                    $_SESSION['log'] = 1;
+                    
+                    header('Location:../checkout/');
+                }else{
+                    echo'<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
+                }
+                }
+                ?>
+				
+				<form method="post" action="">
 					<div class="row">
 						<div class="col-md-2">
-						<label for="fullname">Name</label>
+						<label for="fullname">Username</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="fullname" name="fullname" placeholder="Full Name" required value="<?php echo $_SESSION['nama'];?>">
+						<input type="text" id="username" name="username" placeholder="Username/Email/Phone" required>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-2">
-						<label for="email">Email</label>
+						<label for="password">Password</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="email" name="email" placeholder="name@example.com" required value="<?php echo $_SESSION['email'];?>">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-						<label for="hp">Phone</label>
-						</div>
-						<div class="col-md-10">
-						<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required value="<?php echo $_SESSION['hp'];?>">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-						<label for="city">City</label>
-						</div>
-						<div class="col-md-4">
-						<input type="text" id="city" name="city" placeholder="Jakarta" required value="<?php echo $_SESSION['city'];?>">
-						</div>
-						<div class="col-md-2">
-						<label for="pos">Postal Code</label>
-						</div>
-						<div class="col-md-4">
-						<input type="text" id="pos" name="pos" placeholder="15710" required value="<?php echo $_SESSION['pos'];?>">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-						<label for="alamat">Shipping Address</label>
-						</div>
-						<div class="col-md-10">
-						<textarea id="alamat" name="alamat" placeholder="Shipping Address" style="height:200px" required><?php echo $_SESSION['alamat'];?></textarea>
+						<input type="password" id="password" name="password" placeholder="Password" required style="width: 100%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;resize: vertical;">
 						</div>
 					</div>
 					<br>
-					<button type="submit" class="btn btn-cart">Continue to Payment</button>
+					<button type="submit" name="login" class="btn btn-cart">Login</button>
+                    <br>
+                    <br>
+                    <a href="">Forgot Password?</a>
+                    |
+                    <a href="../regist/">Create an Account!</a>
 				</form>
                 </div>
             </div>

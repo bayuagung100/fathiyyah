@@ -1,4 +1,6 @@
-<?php include '../admin/config.php';
+<?php 
+session_start();
+include '../admin/config.php';
 include '../website/header.php';
 ?>
 

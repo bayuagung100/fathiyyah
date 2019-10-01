@@ -1,16 +1,16 @@
 
  <?php
 //server hosting
-// $servername = "localhost";
-// $username = "u328098603_fathi";
-// $password = "lalaLand123";
-// $database = "u328098603_fathi"; 
-
-//local-server
-$servername = "sql261.main-hosting.eu";
+$servername = "localhost";
 $username = "u328098603_fathi";
 $password = "lalaLand123";
-$database = "u328098603_fathi";
+$database = "u328098603_fathi"; 
+
+//local-server
+// $servername = "sql261.main-hosting.eu";
+// $username = "u328098603_fathi";
+// $password = "lalaLand123";
+// $database = "u328098603_fathi";
 
 //localpc
 // $servername = "localhost";
@@ -46,9 +46,6 @@ function limit_words($string, $word_limit){
     $words = explode(" ",$string);
     return implode(" ",array_splice($words,0,$word_limit)).' ...';
 }	
-
-session_start();
-$sesi = session_id();
 
 
 $query = mysqli_query($mysqli,"SELECT * FROM setting ");

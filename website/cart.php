@@ -49,7 +49,7 @@
 						<td class="text-right" title="Quantity">'.$jp.'</td>
 						<td class="text-right" title="Price">'.rupiah($hp).'</td>
 						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
-						<td><a href="http://localhost/fathiyyah/shop/action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
+						<td><a href="'.$set["url"].'shop/action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
 						}

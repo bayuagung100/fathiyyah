@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting();
 ob_start();
 include "admin/config.php";

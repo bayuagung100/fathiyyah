@@ -13,6 +13,9 @@ RewriteRule ^cart/$ index.php?content=cart [L]
 
 RewriteRule ^checkout/$ shop/checkout.php [L]
 
+RewriteRule ^login/$ shop/login.php [L]
+RewriteRule ^regist/$ shop/regist.php [L]
+
 RewriteRule ^payment/$ shop/payment.php [L]
 
 RewriteRule ^search/$ index.php?content=search&kata=$1 [L]
