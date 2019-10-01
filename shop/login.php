@@ -2,11 +2,6 @@
 session_start();
 include '../admin/config.php';
 include '../website/header.php';
-if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
-    header('location: ../login/');
-  }else{
-    header('Location:../checkout/');
-  }
 ?>
 
 <section class="bg-light page-section" id="category">
