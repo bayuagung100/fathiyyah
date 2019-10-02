@@ -136,9 +136,9 @@ include '../website/header.php';
 	</div>
 </section>
 <?php 	
+include '../website/footer.php';
 }else{
 	header('Location:../checkout/');
-  }
-include '../website/footer.php';
+}
 ?>
 
