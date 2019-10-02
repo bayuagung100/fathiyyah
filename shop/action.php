@@ -9,7 +9,7 @@ $act = $_GET['act'];
 $pm = $_GET['method'];
 
 if ($act=='login') {
-  
+  if(isset($_GET['login'])){
     $username = $_GET['username'];
     $password = md5($_GET['password']);
 
@@ -17,25 +17,25 @@ if ($act=='login') {
     $jmluser = $cekuser->num_rows;
     $data = $cekuser->fetch_array();
 
-      if ($jmluser> 0){
-          $_SESSION['id']       = $data['id'];
-          $_SESSION['user']     = $data['username'];
-          $_SESSION['pass']  = $data['password'];
-          $_SESSION['nama']     = $data['nama'];
-          $_SESSION['email']       = $data['email'];
-          $_SESSION['hp']    = $data['hp'];
-          $_SESSION['city']    = $data['city'];
-          $_SESSION['pos']    = $data['pos'];
-          $_SESSION['alamat']    = $data['alamat'];
-          
+    if ($jmluser> 0){
+        $_SESSION['id']       = $data['id'];
+        $_SESSION['user']     = $data['username'];
+        $_SESSION['pass']  = $data['password'];
+        $_SESSION['nama']     = $data['nama'];
+        $_SESSION['email']       = $data['email'];
+        $_SESSION['hp']    = $data['hp'];
+        $_SESSION['city']    = $data['city'];
+        $_SESSION['pos']    = $data['pos'];
+        $_SESSION['alamat']    = $data['alamat'];
         
-          $_SESSION['log'] = 1;
-          
-          header('Location:../checkout/');
-      }else{
-          $notif = '<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
-      }
-    
+       
+        $_SESSION['log'] = 1;
+        
+        header('Location:../checkout/');
+    }else{
+      $notif = '<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
+    }
+    }
 }
 
 if ($act=='delete') {
