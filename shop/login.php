@@ -2,6 +2,9 @@
 session_start();
 include '../admin/config.php';
 include '../website/header.php';
+if(!empty($_SESSION['user']) or !empty($_SESSION['pass']) or $_SESSION['log']==1){
+	header('location: ../checkout/');
+  }else{
 ?>
 
 <section class="bg-light page-section" id="category">
@@ -135,6 +138,7 @@ include '../website/header.php';
 	</div>
 </section>
 <?php 	
+  }
 include '../website/footer.php';
 ?>
 
