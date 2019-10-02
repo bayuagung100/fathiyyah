@@ -20,7 +20,7 @@ include '../website/header.php';
                 <h3 class="text-center"><b>Login to Checkout</b></h3>
                 <hr>
 				<?php echo $notif;?>
-				<form method="get" action="<?php echo $set["url"];?>shop/cart.php?act=login">
+				<form method="get" action="<?php echo $set["url"];?>shop/action.php?act=login">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Username</label>
