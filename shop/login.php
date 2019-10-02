@@ -63,7 +63,7 @@ include '../website/header.php';
 						<label for="password">Password</label>
 						</div>
 						<div class="col-md-10">
-						<input type="password" id="password" name="password" placeholder="Password" required style="width: 100%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;resize: vertical;">
+						<input type="password" id="password" name="password" placeholder="Password" required >
 						</div>
 					</div>
 					<br>
