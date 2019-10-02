@@ -123,7 +123,7 @@
     <form class="modal-content animate" action="" method="post">
       <div class="container">
         <?php
-        if (isset($_POST['login'])) {
+        if (isset($_POST['loginhome'])) {
           $username = $_POST['username'];
           $password = md5($_POST['password']);
 
@@ -169,7 +169,7 @@
         <input type="password" placeholder="Enter Password" name="password" required>
         <br>
         <br>
-        <button type="submit" name="login" class="btn btn-cart">Login</button>
+        <button type="submit" name="loginhome" class="btn btn-cart">Login</button>
         <button class="btn btn-cart" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
         <br>
         <br>
