@@ -50,7 +50,7 @@ if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
                 }
                 ?>
 				
-				<form method="get" action="<?php echo $set["url"];?>shop/cart.php?act=login">
+				<form method="post" action="">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Username</label>
