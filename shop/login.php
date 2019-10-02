@@ -2,6 +2,7 @@
 session_start();
 include '../admin/config.php';
 include '../website/header.php';
+if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 ?>
 
 <section class="bg-light page-section" id="category">
@@ -19,8 +20,37 @@ include '../website/header.php';
                 <div class="card">
                 <h3 class="text-center"><b>Login to Checkout</b></h3>
                 <hr>
-				<?php echo $notif;?>
-				<form method="get" action="<?php echo $set["url"];?>shop/action.php?act=login">
+                <?php
+                if(isset($_POST['login'])){
+                $username = $_POST['username'];
+                $password = md5($_POST['password']);
+
+                $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' AND password='$password'");
+                $jmluser = $cekuser->num_rows;
+                $data = $cekuser->fetch_array();
+
+                if ($jmluser> 0){
+                    $_SESSION['id']       = $data['id'];
+                    $_SESSION['user']     = $data['username'];
+                    $_SESSION['pass']  = $data['password'];
+                    $_SESSION['nama']     = $data['nama'];
+                    $_SESSION['email']       = $data['email'];
+                    $_SESSION['hp']    = $data['hp'];
+                    $_SESSION['city']    = $data['city'];
+                    $_SESSION['pos']    = $data['pos'];
+                    $_SESSION['alamat']    = $data['alamat'];
+                    
+                   
+                    $_SESSION['log'] = 1;
+                    
+                    header('Location:../checkout/');
+                }else{
+                    echo'<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
+                }
+                }
+                ?>
+				
+				<form method="get" action="<?php echo $set["url"];?>shop/cart.php?act=login">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Username</label>
@@ -106,6 +136,9 @@ include '../website/header.php';
 	</div>
 </section>
 <?php 	
+}else{
+	header('Location:../checkout/');
+  }
 include '../website/footer.php';
 ?>
 
