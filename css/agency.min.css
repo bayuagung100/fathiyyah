@@ -880,7 +880,7 @@ ul.breadcrumb li+li:before {
   .card:hover {
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
-  input[type=text], select, textarea {
+  input[type=text], input[type=password], select, textarea {
 	width: 100%;
 	padding: 12px;
 	border: 1px solid #ccc;
@@ -892,3 +892,15 @@ ul.breadcrumb li+li:before {
 	padding: 12px 12px 12px 0;
 	display: inline-block;
   }
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #3a3b45;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
