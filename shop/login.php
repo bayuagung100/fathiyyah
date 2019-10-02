@@ -1,8 +1,8 @@
 <?php 
 session_start();
+if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 include '../admin/config.php';
 include '../website/header.php';
-if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 ?>
 
 <section class="bg-light page-section" id="category">
