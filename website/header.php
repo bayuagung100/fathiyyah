@@ -124,8 +124,8 @@
       <div class="container">
         <?php
         if (isset($_POST['loginhome'])) {
-          $username = $_POST['username'];
-          $password = md5($_POST['password']);
+          $username = $_POST['usernamehome'];
+          $password = md5($_POST['passwordhome']);
 
           $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' AND password='$password'");
           $jmluser = $cekuser->num_rows;
@@ -162,11 +162,11 @@
         }
         ?>
 
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <label for="usernamehome"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="usernamehome" required>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <label for="passwordhome"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="passwordhome" required>
         <br>
         <br>
         <button type="submit" name="loginhome" class="btn btn-cart">Login</button>
