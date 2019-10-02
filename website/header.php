@@ -147,7 +147,7 @@
             echo "
             <script>
             alert('Login Success'); 
-            window.location = '".$set['url']."';
+            window.location = '".$_SERVER['HTTP_REFERER']."';
             </script>
             ";
           } else {
