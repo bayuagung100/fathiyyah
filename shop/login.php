@@ -38,7 +38,7 @@ include '../website/header.php';
 						</div>
 					</div>
 					<br>
-					<button type="submit" class="btn btn-cart">Login</button>
+					<button type="submit" name="login" class="btn btn-cart">Login</button>
                     <br>
                     <br>
                     <a href="">Forgot Password?</a>
