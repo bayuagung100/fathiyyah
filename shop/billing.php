@@ -61,6 +61,26 @@ if ($aksi=='billing') {
             $deltemp = mysqli_query($mysqli,"DELETE FROM order_temp WHERE id='$oid' AND id_session='$sesi' ");
         }
     }
+
+    $mail_tagihan = strip_tags(htmlspecialchars($tagihan));
+    $mail_name = strip_tags(htmlspecialchars($nama));
+    $mail_email_address = strip_tags(htmlspecialchars($email));
+    $mail_phone = strip_tags(htmlspecialchars($hp));
+
+    $query2 = mysqli_query($mysqli,"SELECT * FROM pembelian WHERE no_tagihan='$tagihan' ");
+    $dtpem = mysqli_fetch_array ($query2);
+
+    // Create the email and send the message
+    $to = $email; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
+    $email_subject = "Tagihan Telah Dibuat";
+    $email_body = "Halo, $mail_name!\n\n";
+    $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
+    $email_body .= "No.Tagihan: $tagihan\n\n";
+    $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+    $headers .= "Reply-To: $mail_email_address";   
+    mail($to,$email_subject,$email_body,$headers);
+
+    return true;      
     header('Location:../payment/');
     // while ($data = mysqli_fetch_array($query)) {
     //     $oid = $data['id'];
