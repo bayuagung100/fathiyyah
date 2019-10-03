@@ -79,8 +79,6 @@ if ($aksi=='billing') {
     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
     $headers .= "Reply-To: $mail_email_address";   
     mail($to,$email_subject,$email_body,$headers);
-
-    return true;      
     header('Location:../payment/');
     // while ($data = mysqli_fetch_array($query)) {
     //     $oid = $data['id'];
