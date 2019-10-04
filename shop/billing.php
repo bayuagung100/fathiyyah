@@ -76,19 +76,24 @@ if ($aksi=='billing') {
     $email_body = "Halo, $mail_name!\n\n";
     $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
     $email_body .= "No.Tagihan: $tagihan\n\n";
-    
-    while ($mail = mysqli_fetch_array($query2)) {
+    $email_body .= "Items Tagihan: \n\n";
+    $query3 = mysqli_query($mysqli,"SELECT * FROM pembelian WHERE no_tagihan='$tagihan' ");
+    while ($mail = mysqli_fetch_array($query3)) {
         $mip = $mail['id_produk'];
         $mj = $mail['jumlah'];
         $mu = $mail['ukuran'];
         $mquery = mysqli_query($mysqli,"SELECT * FROM product WHERE id='$mip' ");
         while ($dquery = mysqli_fetch_array($mquery)) {
-            // $dqnp = $dquery['nama_product'];
+            $dqnp = $dquery['nama_product'];
             $dqh = $dquery['harga'];
 
             $it = $mj*$dqh;
             $total += $it;
-            
+
+            $email_body .= "- $dqnp\n";
+            $email_body .= "Ukuran: $mu\n";
+            $email_body .= "Harga: ".rupiah($dqh)." x ".$mj." = ".rupiah($it)."\n\n";
+           
         }
     }
     $email_body .= "Total Tagihan: ".rupiah($total)."\n\n";
@@ -103,9 +108,9 @@ if ($aksi=='billing') {
 
         $email_body .= "- $nama_bank\n";
         $email_body .= "No Rekening: $no_rek\n";
-        $email_body .= "a/n: $nama_pemilik\n";
+        $email_body .= "a/n: $nama_pemilik\n\n";
     }
-    $email_body .= "\n\n\n\n";
+    $email_body .= "\n\n\n";
     $email_body .= "Terima Kasih.";
     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
     $headers .= "Reply-To: $mail_email_address";
