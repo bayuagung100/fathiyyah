@@ -76,13 +76,21 @@ if ($aksi=='billing') {
     $email_body = "Halo, $mail_name!\n\n";
     $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
     $email_body .= "No.Tagihan: $tagihan\n\n";
-    $email_body .= "<ul>";
-        $email_body .= "<li>";
-        $email_body .= "Total Tagihan:";
-        $email_body .= "</li>";
-    $email_body .= "</ul>";
+    $email_body .= "Total Tagihan: \n\n";
+    $email_body .= "Items Tagihan: \n\n";
+    $email_body .= "- \n";
+    $email_body .= "- \n";
+    $email_body .= "\n";
+    $email_body .= "----------------------------------------------------------------------\n\n";
+    $email_body .= "Anda dapat melakukan pembayaran ke rekening kami, sebagai berikut:\n";
+    $email_body .= "*Mohon sertakan No.Tagihan / Invoice Number, untuk konfirmasi pembayaran.\n\n";
+    $email_body .= "- MANDIRI\n";
+    $email_body .= "No Rekening: \n";
+    $email_body .= "a/n: \n";
+    $email_body .= "\n\n\n\n";
+    $email_body .= "Terima Kasih.";
     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-    $headers .= "Reply-To: $mail_email_address";   
+    $headers .= "Reply-To: $mail_email_address";
     mail($to,$email_subject,$email_body,$headers);
     header('Location:../payment/');
     // while ($data = mysqli_fetch_array($query)) {
