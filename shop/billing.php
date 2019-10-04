@@ -77,13 +77,13 @@ if ($aksi=='billing') {
     $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
     $email_body .= "No.Tagihan: $tagihan\n\n";
     $email_body .= "Items Tagihan: \n\n";
-    $query3 = mysqli_query($mysqli,"SELECT * FROM pembelian WHERE no_tagihan='$tagihan' ");
-    while ($mail = mysqli_fetch_array($query3)) {
+    // $query3 = mysqli_query($mysqli,"SELECT * FROM pembelian WHERE no_tagihan='$tagihan' ");
+    while ($mail = mysqli_fetch_array($query2)) {
         $mip = $mail['id_produk'];
         $mj = $mail['jumlah'];
         $mu = $mail['ukuran'];
-        $mquery = $mysqli->query("SELECT * FROM product WHERE id='$mip' ");
-        while ($dquery = $query->fetch_array()) {
+        $mquery = mysqli_query($mysqli,"SELECT * FROM product WHERE id='$mip' ");
+        while ($dquery = mysqli_fetch_array($mquery)) {
             $dqnp = $dquery['nama_product'];
             $dqh = $dquery['harga'];
 
