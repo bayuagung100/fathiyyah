@@ -43,7 +43,7 @@ include '../website/header.php';
                    
                     $_SESSION['log'] = 1;
                     
-                    header('Location:../checkout/');
+                    // header('Location:../checkout/');
                 }else{
                     echo'<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
                 }

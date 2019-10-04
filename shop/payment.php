@@ -24,16 +24,26 @@ include '../website/header.php';
 						Setoran Tunai maupun Phone Banking.
 						Semua pembayaran produk dan layanan dapat dilakukan melalui rekening bank berikut ini:</p>
 					<ul style="list-style: none;">
-						<li style="padding:10px">
-							<p>
-								<b>Mandiri</b>
-								<br>
-								No Rekening: 1510002481999
-								<br>
-								a.n: SELLY PATRICIA AROR
-							</p>
-							<!-- <a href="" class="btn btn-cart"><img class="img-product-home" src="../img/bank-transfer.png"></a> -->
-						</li>
+						<?php
+						$query = $mysqli->query("SELECT * FROM bank_transfer");
+						while ($data = $query->fetch_array()) {
+							$bank = $data['nama_bank'];
+							$no_rek = $data['no_rek'];
+							$pemilik = $data['nama_pemilik'];
+
+							echo '
+							<li style="padding:10px">
+								<p>
+									<b>'.$bank.'</b>
+									<br>
+									No Rekening: '.$no_rek.'
+									<br>
+									a/n: '.$pemilik.'
+								</p>
+							</li>
+							';
+						}
+						?>
 						<!-- <li style="padding:10px">
 							<a href="<?php echo $set["url"]; ?>shop/action.php?act=payment&method=whatsapp" class="btn btn-cart"><img class="img-product-home" src="../img/whatsapp.png"></a>
 						</li> -->
@@ -50,11 +60,74 @@ include '../website/header.php';
 							<p>Mohon hubungi kami di Whatsapp <?php echo "+" . $set['wa']; ?>, jika ingin konfirmasi pembayaran via Whatsapp.</p>
 						</li>
 					</ul>
+					<form method="post" class="container" action="" enctype="multipart/form-data">
+					<br>
+					<?php
+					if(isset($_POST['payment'])){
+						$bank_tujuan = $_POST['bank_tujuan'];
+						$bank_pengirim = $_POST['bank_pengirim'];
+						$no_rek_pengirim = $_POST['no_rek_pengirim'];
+						$nama_pengirim = $_POST['nama_pengirim'];
+						$tgl_transfer = $_POST['tgl_transfer'];
+						$catatan = $_POST['catatan'];
+						$ekstensi_diperbolehkan	= array('png','jpg','jpeg');
+						$file = $_FILES['bukti_pembayaran']['name'];
+						$x = explode('.', $file);
+						$ekstensi = strtolower(end($x));
+						$file_tmp = $_FILES['bukti_pembayaran']['tmp_name'];
 
-					<form method="post" action="" class="container">
+						if(in_array($ekstensi,$ekstensi_diperbolehkan) === true) {
+							if(move_uploaded_file($file_tmp, '../img/bukti_tf/'.$file)){
+							$query = $mysqli->query("INSERT INTO konfirmasi_pembayaran
+								(
+									bank_tujuan,
+									bank_pengirim,
+									no_rek_pengirim,
+									nama_pengirim,
+									tgl_transfer,
+									bukti_pembayaran,
+									catatan
+								)
+								values
+								(
+									'$bank_tujuan',
+									'$bank_pengirim',
+									'$no_rek_pengirim',
+									'$nama_pengirim',
+									'$tgl_transfer',
+									'$file',
+									'$catatan'
+								)
+							");
+							echo '
+							<div class="alert alert-success" role="alert"><b>Success.</b> Bukti Transfer yang Anda upload akan diproses dalam 1x24 jam di jam kerja kami.</div>
+							<script>
+							alert("Success. Bukti Transfer yang Anda upload akan diproses dalam 1x24 jam di jam kerja kami."); 
+							</script>
+							';
+							}
+						}else{
+							echo '
+							<div class="alert alert-danger" role="alert"><b>Sorry!</b> Bukti Transfer yang Anda upload tidak didukung.</div>
+							<script>
+							alert("Sorry! Bukti Transfer yang Anda upload tidak didukung."); 
+							</script>
+							';
+						}
+					}
+					?>
 						<label for="bank_tujuan"><b>Bank Tujuan</b></label>
 						<select id="bank_tujuan" name="bank_tujuan" required>
-							<option value="">Pilih Bank Tujuan</option>
+						<?php
+						$query = $mysqli->query("SELECT * FROM bank_transfer");
+						while ($data = $query->fetch_array()) {
+							$bank = $data['nama_bank'];
+							$no_rek = $data['no_rek'];
+							$pemilik = $data['nama_pemilik'];
+
+							echo'<option value="'.$bank.'">'.$bank.' ('.$no_rek.') a/n '.$pemilik.'</option>';
+						}
+						?>
 						</select>
 						<br>
 						<label for="bank_pengirim"><b>Bank Pengirim</b></label>
@@ -63,11 +136,11 @@ include '../website/header.php';
 						<label for="no_rek_pengirim"><b>Nomor Rekening Pengirim</b></label>
 						<input type="text" id="no_rek_pengirim" name="no_rek_pengirim" placeholder="123123123123 atau no resi transfer Bank" required>
 						<br>
-						<label for="nama_pengirim"><b>Nama Pengirim</b></label>
+						<label for="nama_pengirim"><b>Nama Pengirim (Sesuai Rekening)</b></label>
 						<input type="text" id="nama_pengirim" name="nama_pengirim" placeholder="misal: John doe" required>
 						<br>
 						<label for="tgl_transfer"><b>Tanggal Transfer</b></label>
-						<input type="date" id="tgl_transfer" min="<?php echo date('Y-m-d',strtotime("-1 month"));?>" max="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+						<input type="date" id="tgl_transfer" name="tgl_transfer" min="<?php echo date('Y-m-d',strtotime("-1 month"));?>" max="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
 						<br>
 						<label for="bukti_pembayaran"><b>Upload Bukti Pembayaran</b></label>
 						<input type="file" id="bukti_pembayaran" name="bukti_pembayaran" required>

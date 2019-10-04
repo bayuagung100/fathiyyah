@@ -76,6 +76,11 @@ if ($aksi=='billing') {
     $email_body = "Halo, $mail_name!\n\n";
     $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
     $email_body .= "No.Tagihan: $tagihan\n\n";
+    $email_body .= "<ul>";
+        $email_body .= "<li>";
+        $email_body .= "Total Tagihan:";
+        $email_body .= "</li>";
+    $email_body .= "</ul>";
     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
     $headers .= "Reply-To: $mail_email_address";   
     mail($to,$email_subject,$email_body,$headers);
