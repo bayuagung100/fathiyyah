@@ -89,7 +89,7 @@ if ($aksi=='billing') {
 
             $it = $mj*$dqh;
             $total += $it;
-            echo $email_body .= "- $dqnp\nUkuran: $mu\nHarga: ".rupiah($dqh)." x ".$mj." = ".rupiah($it)."\n\n";
+            $email_body .= "- $dqnp\nUkuran: $mu\nHarga: ".rupiah($dqh)." x ".$mj." = ".rupiah($it)."\n\n";
            
         }
     }
