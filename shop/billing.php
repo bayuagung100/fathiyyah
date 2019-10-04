@@ -57,9 +57,9 @@ if ($aksi=='billing') {
             'new'                
             )
         ");
-        if ($insuser) {
-            $deltemp = mysqli_query($mysqli,"DELETE FROM order_temp WHERE id='$oid' AND id_session='$sesi' ");
-        }
+        // if ($insuser) {
+        //     $deltemp = mysqli_query($mysqli,"DELETE FROM order_temp WHERE id='$oid' AND id_session='$sesi' ");
+        // }
     }
 
     $mail_tagihan = strip_tags(htmlspecialchars($tagihan));
