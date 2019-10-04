@@ -77,7 +77,8 @@ if ($aksi=='billing') {
     $email_body .= "Email ini adalah pemberitahuan Tagihan Anda yang dibuat pada $dtpem[tanggal]\n\n";
     $email_body .= "No.Tagihan: $tagihan\n\n";
     $email_body .= "Items Tagihan: \n\n";
-    while ($mail = mysqli_fetch_array($query2)) {
+    $query3 = mysqli_query($mysqli,"SELECT * FROM pembelian WHERE no_tagihan='$tagihan' ");
+    while ($mail = mysqli_fetch_array($query3)) {
         $mip = $mail['id_produk'];
         $mj = $mail['jumlah'];
         $mu = $mail['ukuran'];
@@ -88,13 +89,11 @@ if ($aksi=='billing') {
 
             $it = $mj*$dqh;
             $total += $it;
-
-            $email_body .= "- $dqnp\n";
-            $email_body .= "Ukuran: $mu\n";
-            $email_body .= "Harga: ".rupiah($dqh)." x ".$mj." = .".$it."\n\n";
+            echo $email_body .= "- $dqnp\nUkuran: $mu\nHarga: ".rupiah($dqh)." x ".$mj." = ".rupiah($it)."\n\n";
+           
         }
     }
-    $email_body .= "Total Tagihan: $total\n\n";
+    $email_body .= "Total Tagihan: ".rupiah($total)."\n\n";
     $email_body .= "----------------------------------------------------------------------\n\n";
     $email_body .= "Anda dapat melakukan pembayaran ke rekening kami, sebagai berikut:\n";
     $email_body .= "*Mohon sertakan No.Tagihan / Invoice Number, untuk konfirmasi pembayaran.\n\n";
