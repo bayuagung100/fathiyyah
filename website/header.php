@@ -38,62 +38,7 @@
       }
     }
   </script>
-  <script>
-    /* Formatting function for row details - modify as you need */
-  function format ( d ) {
-      // `d` is the original data object for the row
-      return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-          '<tr>'+
-              '<td>Full name:</td>'+
-              '<td>'+d.name+'</td>'+
-          '</tr>'+
-          '<tr>'+
-              '<td>Extension number:</td>'+
-              '<td>'+d.extn+'</td>'+
-          '</tr>'+
-          '<tr>'+
-              '<td>Extra info:</td>'+
-              '<td>And any further details here (images etc)...</td>'+
-          '</tr>'+
-      '</table>';
-  }
   
-  $(document).ready(function() {
-      var table = $('#example').DataTable( {
-          "ajax": "../ajax/data/objects.txt",
-          "columns": [
-              {
-                  "className":      'details-control',
-                  "orderable":      false,
-                  "data":           null,
-                  "defaultContent": ''
-              },
-              { "data": "name" },
-              { "data": "position" },
-              { "data": "office" },
-              { "data": "salary" }
-          ],
-          "order": [[1, 'asc']]
-      } );
-      
-      // Add event listener for opening and closing details
-      $('#example tbody').on('click', 'td.details-control', function () {
-          var tr = $(this).closest('tr');
-          var row = table.row( tr );
-  
-          if ( row.child.isShown() ) {
-              // This row is already open - close it
-              row.child.hide();
-              tr.removeClass('shown');
-          }
-          else {
-              // Open this row
-              row.child( format(row.data()) ).show();
-              tr.addClass('shown');
-          }
-      } );
-  } );
-  </script>
 </head>
 
 <body id="page-top">
@@ -241,7 +186,7 @@
     <div class=" modal-content animate" style="width: 35%;right: 20px;float: right;top: -24px;">
       <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
       <?php
-        $tagihan = mysqli_query($mysqli, "SELECT count(*) as total from pembelian WHERE id_user_shop='$_SESSION[id]' AND payment='new' ");
+        $tagihan = mysqli_query($mysqli, "SELECT count(DISTINCT no_tagihan) as total from pembelian WHERE id_user_shop='$_SESSION[id]' AND payment='new' ");
         $tag = mysqli_fetch_assoc($tagihan);
       ?>
       <a class="nav-link" href="<?php echo $set["url"]; ?>tagihan/"><i class="fas fa-archive"></i> Tagihan <span><sup><?php echo $tag['total'];?></sup></span></a>
