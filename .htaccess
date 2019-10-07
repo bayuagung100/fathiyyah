@@ -13,6 +13,8 @@ RewriteRule ^cart/$ index.php?content=cart [L]
 
 RewriteRule ^checkout/$ shop/checkout.php [L]
 
+RewriteRule ^tagihan/$ shop/tagihan.php [L]
+
 RewriteRule ^login/$ shop/login.php [L]
 RewriteRule ^regist/$ shop/regist.php [L]
 

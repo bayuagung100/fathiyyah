@@ -11,6 +11,8 @@
   <!-- Bootstrap core CSS -->
   <link href="<?php echo $set["url"];?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  <link href="<?php echo $set["url"];?>vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
   <!-- Custom fonts for this template -->
   <link href="<?php echo $set["url"];?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -20,6 +22,7 @@
 
   <!-- Custom styles for this template -->
   <link href="<?php echo $set["url"];?>css/agency.min.css" rel="stylesheet">
+  
   <script>
     // Get the modal
     var modal = document.getElementById('id01');
@@ -180,6 +183,11 @@
   <div id="id02" class="modal">
     <div class=" modal-content animate" style="width: 35%;right: 20px;float: right;top: -24px;">
       <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+      <?php
+        $tagihan = mysqli_query($mysqli, "SELECT count(*) as total from pembelian WHERE id_user_shop='$_SESSION[id]' AND payment='new' ");
+        $tag = mysqli_fetch_assoc($tagihan);
+      ?>
+      <a class="nav-link" href="<?php echo $set["url"]; ?>tagihan/"><i class="fas fa-archive"></i> Tagihan <span><sup><?php echo $tag['total'];?></sup></span></a>
       <a class="nav-link" href="<?php echo $set["url"];?>shop/logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
       <span onclick="document.getElementById('id02').style.display='none'" class="nav-link" title="Close">&times; Close</span>
     </div>

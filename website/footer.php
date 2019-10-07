@@ -35,9 +35,15 @@
 <!-- Plugin JavaScript -->
 <script src="<?php echo $set["url"];?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
+
+<script src="<?php echo $set["url"];?>vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo $set["url"];?>vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <!-- Contact form JavaScript -->
 <script src="<?php echo $set["url"];?>js/jqBootstrapValidation.js"></script>
 <script src="<?php echo $set["url"];?>js/contact_me.js"></script>
+
+
 
 <!-- Custom scripts for this template -->
 <script src="<?php echo $set["url"];?>js/agency.min.js"></script>
@@ -47,6 +53,20 @@
       
       });
       </script>
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 
 </html>
