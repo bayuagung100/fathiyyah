@@ -36,8 +36,7 @@
 <script src="<?php echo $set["url"];?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-<script src="<?php echo $set["url"];?>vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo $set["url"];?>vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo $set["url"];?>vendor/DataTables/datatables.min.js"></script>
 
 <!-- Contact form JavaScript -->
 <script src="<?php echo $set["url"];?>js/jqBootstrapValidation.js"></script>

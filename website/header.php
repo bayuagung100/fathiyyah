@@ -11,7 +11,8 @@
   <!-- Bootstrap core CSS -->
   <link href="<?php echo $set["url"];?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="<?php echo $set["url"];?>vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<?php echo $set["url"];?>vendor/DataTables/datatables.min.css"/>
+  
 
   <!-- Custom fonts for this template -->
   <link href="<?php echo $set["url"];?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
