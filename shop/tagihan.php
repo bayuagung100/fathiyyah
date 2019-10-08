@@ -19,7 +19,6 @@ include '../website/header.php';
             <table id="example" class="stripe" style="width:100%">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>No.Tagihan</th>
                         <th>Nama</th>
                         <th>Tanggal</th>
@@ -27,6 +26,34 @@ include '../website/header.php';
                         <th>Aksi</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?
+                    $query = $mysqli->query("SELECT DISTINCT no_tagihan, nama, tanggal, payment FROM pembelian WHERE id_user_shop=$_SESSION[id] order by id DESC ");
+                    while ($data=$query->fetch_array()) {
+                        $nt = $data['no_tagihan'];
+                        $nm = $data['nama'];
+                        $tgl = $data['tanggal'];
+                        $payment = $data['payment'];
+                        if ($payment=="new") {
+                            $status = "<span style='color:red'>Unpaid</span>";
+                        }else {
+                            $status = "<span style='color:green'>Paid</span>";
+                        }
+                        $aksi = "<a href='../print/?no_tagihan=".$nt."' target='_blank' class='btn btn-cart' >Print</a> <a href='../payment/' class='btn btn-cart' >Bayar</a>";
+
+                        echo'
+                        <tr>
+                            <td>'.$nt.'</td>
+                            <td>'.$nm.'</td>
+                            <td>'.$tgl.'</td>
+                            <td>'.$status.'</td>
+                            <td>'.$aksi.'</td>
+                        </tr>
+                        ';
+                    }
+                    ?>
+                    
+                </tbody>
             </table>
             </div>
 

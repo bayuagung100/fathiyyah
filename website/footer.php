@@ -54,77 +54,12 @@
       </script>
 
 <script type="text/javascript">
-    /* Formatting function for row details - modify as you need */
-  function format ( d ) {
-      var produk = d.nama_produk;
-      var tmp = '<p>'+produk+'</p>';
-
-      
-      return produk;
-      // return'<table class="table table-striped">'+
-      //   '<thead>'+
-      //   '<tr>'+
-      //     '<th>Product</th>'+
-      //   '</tr>'+
-      //   '</thead>'+
-      //   '<tbody>'+
-      //   '<tr>'+produk+'</tr>'+
-      //   '</tbody>'+
-      // '</table>';
-  }
   
   $(document).ready(function() {
-      var table = $('#example').DataTable( {
-          "ajax": "../ajax/data/tagihan.php",
-          "deferRender": true,
-          "columns": [
-              {
-                  "className":      'details-control',
-                  "orderable":      false,
-                  "data":           null,
-                  "defaultContent": ''
-              },
-              { "data": "no_tagihan" },
-              { "data": "nama" },
-              { "data": "tanggal" },
-              // { "data": "status" },
-              { "render": function ( data, type, row ) { 
-                  var html = ""
-                  if(row.status == "new"){ 
-                    html = 'UNPAID' 
-                  }else{
-                    html = 'PAID'
-                  }
-                  return html; 
-                }
-              },
-              { "render": function ( data, type, row ) { // Tampilkan kolom aksi 
-                  var html  = "<a href=''>EDIT</a> | "                        
-                  html += "<a href=''>DELETE</a>"                        
-                  return html                    
-                }                
-              },
-          ],
-          "order": [[3, 'desc']]
-      } );
-      
-      // Add event listener for opening and closing details
-      $('#example tbody').on('click', 'td.details-control', function () {
-          var tr = $(this).closest('tr');
-          var row = table.row( tr );
-  
-          if ( row.child.isShown() ) {
-              // This row is already open - close it
-              row.child.hide();
-              tr.removeClass('shown');
-          }
-          else {
-              // Open this row
-              row.child( format(row.data()) ).show();
-              tr.addClass('shown');
-          }
-      } );
-  } );
+    $('#example').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
   </script>
 </body>
 

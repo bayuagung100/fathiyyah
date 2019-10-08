@@ -15,6 +15,8 @@ RewriteRule ^checkout/$ shop/checkout.php [L]
 
 RewriteRule ^tagihan/$ shop/tagihan.php [L]
 
+RewriteRule ^print/$ shop/print.php [L]
+
 RewriteRule ^login/$ shop/login.php [L]
 RewriteRule ^regist/$ shop/regist.php [L]
 
