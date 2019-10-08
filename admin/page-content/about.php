@@ -1,3 +1,5 @@
+<script type="text/javascript" src="vendor/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="js/tinymce_config.js"></script>
 <?php
 if(!defined("INDEX")) header('location: ../index.php');
 
@@ -25,6 +27,7 @@ switch($show){
   buat_textbox("URL Website", "url",$data['url']);
   buat_textarea("Deskirpsi Website", "deskripsi", $data['deskripsi']);
   buat_imagepicker("Icon Website (50x50)", "icon", $data['icon']);
+  buat_textarea("Alamat", "alamat", $data['alamat'],'richtext');
   buat_textbox("Email", "email",$data['email']);
   buat_textbox("Instagram", "ig",$data['ig']);
   buat_textbox("WhatsApp", "wa",$data['wa']);
@@ -97,6 +100,7 @@ switch($show){
   $url   = addslashes($_POST['url']);
   $deskripsi  = addslashes($_POST['deskripsi']);
   $icon  = $_POST[icon];
+  $alamat  = addslashes($_POST['alamat']);
   $email  = addslashes($_POST['email']);
   $ig  = addslashes($_POST['ig']);
   $wa  = $_POST[wa];
@@ -111,6 +115,7 @@ switch($show){
       url = '$url',
       icon          = '$icon',
       deskripsi     = '$deskripsi',
+      alamat     = '$alamat',
       email = '$email',
       ig = '$ig',
       wa = '$wa'

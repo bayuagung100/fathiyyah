@@ -72,6 +72,7 @@
         							$judul_website 	= $data["judul_website"];
         							$icon			= $data["icon"];
         							$deskripsi 		= $data["deskripsi"];
+        							$alamat 		= $data["alamat"];
         							$email 	= $data["email"];
         							$ig 	= $data["ig"];
         							$url 	= $data["url"];
@@ -97,6 +98,10 @@
         						<tr>
         							<td>Email Contact</td>
         							<td>: <?php echo $email;?></td>
+        						</tr>
+        						<tr>
+        							<td>Alamat</td>
+        							<td>: <?php echo $alamat;?></td>
         						</tr>
         						<tr>
         							<td>Instagram</td>

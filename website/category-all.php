@@ -16,7 +16,7 @@
 			while ($data = mysqli_fetch_array($query)) {
 				$ip = $data['id'];
 				$np = $data['nama_cp'];
-				$npK = strtolower(str_replace(' ', '-', $np));
+				$npK = strtolower(str_replace(array(' ','/'), '-', $np));
 				$gp = $data['icon'];
 
 				if($gp){

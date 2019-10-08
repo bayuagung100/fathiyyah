@@ -46,6 +46,17 @@ function limit_words($string, $word_limit){
     $words = explode(" ",$string);
     return implode(" ",array_splice($words,0,$word_limit)).' ...';
 }	
+function convert_seo($kata) {
+    $simbol = array ('-','/','\\',',','.','#',':',';','\',','"','[',']','{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+');
+	
+	//Menghilangkan simbol pada array $simbol
+    $kata = str_replace($simbol, '', $kata); 
+    
+	//Ubah ke huruf kecil dan mengganti spasi dengan (-)
+    $kata = strtolower(str_replace(' ', '-', $kata)); 
+    
+	return $kata;
+}
 
 
 $query = mysqli_query($mysqli,"SELECT * FROM setting ");

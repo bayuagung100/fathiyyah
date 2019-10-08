@@ -40,9 +40,9 @@ $kat = mysqli_fetch_array($query);
 				<img class="img-product-home" src="'.$pic.'" alt="">
 				</a>
 				<div class="portfolio-caption">
-				<h3>'.$np.'</h3>
+				<a href="'.$set["url"].'product/'.$ip.'/detail/"><h3>'.$np.'</h3></a>
 				<h6>'.rupiah($hp).'</h6>
-				<p class="text-muted">'.$dp.'</p>
+				<p class="text-muted">'.limit_words($dp, 10).'</p>
 				</div>
 				</div>
 				';
