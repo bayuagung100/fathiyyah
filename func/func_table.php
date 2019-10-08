@@ -16,6 +16,40 @@ function buka_tabel($judul){
 		<tbody>';
 }
 
+function buka_tabel_orderan($judul){
+	echo'
+	<div class="card-body">
+		<div class="table-responsive">
+		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		<thead>
+			<tr>
+			<th style="width: 10px">No</th>';
+	foreach($judul as $jdl){
+		echo '<th>'.$jdl.'</th>';
+	}
+				
+		echo '	<th style="width: 90px">Aksi</th>
+			</tr>
+		</thead>
+		<tbody>';
+}
+function isi_orderan($no, $data, $link, $id, $edit=true){
+	echo'<tr>
+			<td valign="top">'.$no.'</td>';
+	foreach($data as $dt){
+		echo'<td valign="top">'.$dt.'</td>';
+	}
+	echo'<td valign="top">';
+	if($edit){
+		echo'<a href="'.$link.'&show=form&id='.$id.'" class="btn btn-success btn-sm">
+				<i class="fas fa-eye"></i> Detail
+			</a> ';
+	}
+	echo'</td>
+		</tr>';
+}
+
+
 function isi_bp($data, $link, $id, $edit=true, $hapus=true){
 	echo'
 		<tr>';

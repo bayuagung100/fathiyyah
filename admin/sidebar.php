@@ -37,9 +37,19 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-      <a class="nav-link" href="?content=kasir">
+      <a class="nav-link" href="?content=orderan">
         <i class="fas fa-shopping-cart"></i>
-        <span>Kasir</span>
+        <span>Orderan</span>
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+      <a class="nav-link" href="?content=konfirmasi-pembayaran">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Konfirmasi Pembayaran</span>
       </a>
     </li>
 

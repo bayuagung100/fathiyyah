@@ -4,6 +4,42 @@ function buka_form($link, $id, $aksi){
 			<input type="hidden" name="id" value="'.$id.'">
 			<input type="hidden" name="aksi" value="'.$aksi.'">';
 }
+function buat_notag($label, $nilai, $lebar='4'){
+	echo'<div class="form-group row">
+			<label class="col-sm-2 control-label">'.$label.'</label>
+			<div class="col-sm-'.$lebar.'">
+				<b>'.$nilai.'</b>
+			</div>
+		 </div>
+		 ';
+}
+function buat_tag($label, $nilai, $lebar='4'){
+	echo'<div class="form-group">
+			<label class="col-sm-2 control-label">'.$label.'</label>
+			<div class="col-sm-'.$lebar.'">'.$nilai.'</div>
+		 </div>
+		 ';
+}
+function buat_rowtagbuka(){
+    echo'
+    <div class="form-group row">
+    ';
+}
+function buat_label($label, $lebar){
+    echo'
+    <label class="col-sm-'.$lebar.'" control-label">'.$label.'</label>
+    ';
+}
+function buat_col($nilai, $lebar){
+    echo'
+    <div class="col-sm-'.$lebar.'">'.$nilai.'</div>
+    ';
+}
+function buat_rowtagtutup(){
+    echo'
+    </div>
+    ';
+}
 
 function buat_textbox($label, $nama, $nilai, $lebar='4', $tipe="text"){
 	echo'<div class="form-group row" id="'.$nama.'">

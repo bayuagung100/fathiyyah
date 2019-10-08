@@ -5,8 +5,6 @@
 
         <!-- Content Row -->
         <div class="row">
-
-        	<!-- Earnings (Monthly) Card Example -->
         	<div class="col-xl-3 col-md-6 mb-4">
         		<a href="?content=product">
         			<div class="card border-left-primary shadow h-100 py-2">
@@ -29,7 +27,7 @@
         		</a>
         	</div>
 
-        	<!-- Earnings (Monthly) Card Example -->
+        	
         	<div class="col-xl-3 col-md-6 mb-4">
         		<a href="?content=cat_product">
         			<div class="card border-left-success shadow h-100 py-2">
@@ -42,6 +40,54 @@
         								$dcp = mysqli_num_rows($query2);
         							?>
         							<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $dcp; ?></div>
+        						</div>
+        						<div class="col-auto">
+        							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        		</a>
+			</div>
+			
+			<div class="col-xl-3 col-md-6 mb-4">
+        		<a href="?content=orderan">
+        			<div class="card border-left-info shadow h-100 py-2">
+        				<div class="card-body">
+        					<div class="row no-gutters align-items-center">
+        						<div class="col mr-2">
+        							<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Orderan</div>
+        							<?php 
+        								$query3 = mysqli_query($mysqli,"SELECT DISTINCT no_tagihan FROM pembelian WHERE payment='done'");
+        								$dop = mysqli_num_rows($query3);
+        								$query4 = mysqli_query($mysqli,"SELECT DISTINCT no_tagihan FROM pembelian WHERE payment='new'");
+        								$dou = mysqli_num_rows($query4);
+        							?>
+        							<div class="h5 mb-0 font-weight-bold text-gray-800">Paid:<?php echo $dop; ?></div>
+        							<div class="h5 mb-0 font-weight-bold text-gray-800">Unpaid:<?php echo $dou; ?></div>
+        						</div>
+        						<div class="col-auto">
+        							<i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        		</a>
+        	</div>
+
+        	
+        	<div class="col-xl-3 col-md-6 mb-4">
+        		<a href="?content=konfirmasi-pembayaran">
+        			<div class="card border-left-warning shadow h-100 py-2">
+        				<div class="card-body">
+        					<div class="row no-gutters align-items-center">
+        						<div class="col mr-2">
+        							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Konfirmasi Pembayaran</div>
+        							<?php 
+        								$query4 = mysqli_query($mysqli,"SELECT * FROM konfirmasi_pembayaran WHERE konfirmasi='n'");
+        								$dkp = mysqli_num_rows($query4);
+        							?>
+        							<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $dkp; ?></div>
         						</div>
         						<div class="col-auto">
         							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>

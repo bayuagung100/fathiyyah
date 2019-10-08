@@ -86,7 +86,8 @@ include '../website/header.php';
 									nama_pengirim,
 									tgl_transfer,
 									bukti_pembayaran,
-									catatan
+									catatan,
+									konfirmasi
 								)
 								values
 								(
@@ -96,7 +97,8 @@ include '../website/header.php';
 									'$nama_pengirim',
 									'$tgl_transfer',
 									'$file',
-									'$catatan'
+									'$catatan',
+									'n'
 								)
 							");
 							echo '

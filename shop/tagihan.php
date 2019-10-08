@@ -36,10 +36,12 @@ include '../website/header.php';
                         $payment = $data['payment'];
                         if ($payment=="new") {
                             $status = "<span style='color:red'>Unpaid</span>";
+                            $aksi = "<a href='../print/?no_tagihan=".$nt."' target='_blank' class='btn btn-cart' >Print</a> <a href='../payment/' class='btn btn-cart' >Bayar</a>";
                         }else {
                             $status = "<span style='color:green'>Paid</span>";
+                            $aksi = "<a href='../print/?no_tagihan=".$nt."' target='_blank' class='btn btn-cart' >Print</a>";
                         }
-                        $aksi = "<a href='../print/?no_tagihan=".$nt."' target='_blank' class='btn btn-cart' >Print</a> <a href='../payment/' class='btn btn-cart' >Bayar</a>";
+                        
 
                         echo'
                         <tr>
