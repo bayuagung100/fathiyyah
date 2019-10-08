@@ -5,7 +5,8 @@ function buka_tabel($judul){
 		<div class="table-responsive">
 		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		<thead>
-			<tr>';
+			<tr>
+			<th style="width: 10px">No</th>';
 	foreach($judul as $jdl){
 		echo '<th>'.$jdl.'</th>';
 	}
@@ -50,9 +51,10 @@ function isi_orderan($no, $data, $link, $id, $edit=true){
 }
 
 
-function isi_bp($data, $link, $id, $edit=true, $hapus=true){
+function isi_bp($no, $data, $link, $id, $edit=true, $hapus=true){
 	echo'
-		<tr>';
+		<tr>
+		<td valign="top">'.$no.'</td>';
 	foreach($data as $dt){
 		echo'<td>'.$dt.'</td>';
 	}

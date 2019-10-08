@@ -23,8 +23,9 @@ switch($show){
             ';
 
             buka_tabel(array("Category","Icon"));
+            $no=1;
             global $mysqli;
-            $query  = $mysqli->query( "select * from cat_product ORDER BY id ");
+            $query  = $mysqli->query( "select * from cat_product ORDER BY id DESC");
             while($data = $query->fetch_array()){
               $gambar = $data['icon'];
               if($gambar){
@@ -32,7 +33,8 @@ switch($show){
               }else{
                 $pic = "../img/noimage.jpg";
               }
-              isi_bp(array($data['nama_cp'],"<img src='".$pic."' width='150' style='margin-bottom: 10px'>"), $link, $data['id']);
+              isi_bp($no, array($data['nama_cp'],"<img src='".$pic."' width='150' style='margin-bottom: 10px'>"), $link, $data['id']);
+              $no++;
             }
             tutup_tabel();
 

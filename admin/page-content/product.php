@@ -25,8 +25,9 @@ switch($show){
 	';
 
 	buka_tabel(array("Nama Product","Gambar", "Deskripsi", "Harga","Category","Slide"));
+	$no = 1;
 	global $mysqli;
-	$query  = $mysqli->query( "select * from product ORDER BY id ");
+	$query  = $mysqli->query( "select * from product ORDER BY id DESC");
 	while($data = $query->fetch_array()){
 		$kategori = $mysqli->query( "SELECT * FROM cat_product where id='$data[category]'");
 		$kat = $kategori->fetch_array();
@@ -41,7 +42,8 @@ switch($show){
 		if($data['slide']=='Y') $slide = '<a href="'.$link.'&show=deactivate&id='.$data['id'].'" style="color: green"><i class="fas fa-check-circle"></i></a>';
 		else $slide = '<a href="'.$link.'&show=activate&id='.$data['id'].'" style="color: red"><i class="fas fa-times-circle"></i></a>';
 
-		isi_bp(array($data['nama_product'],"<img src='".$pic."' width='150' style='margin-bottom: 10px'>",$data['deskripsi'],$data['harga'],$kat['nama_cp'], $slide), $link, $data['id']);
+		isi_bp($no, array($data['nama_product'],"<img src='".$pic."' width='150' style='margin-bottom: 10px'>",limit_words($data['deskripsi'],10),$data['harga'],$kat['nama_cp'], $slide), $link, $data['id']);
+		$no++;
 	}
 	tutup_tabel();
 
