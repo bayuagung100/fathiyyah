@@ -989,8 +989,8 @@ tr.shown td.details-control {
 
 .field-icon {
 	float: right;
-	margin-left: -25px;
-	margin-top: -25px;
+	margin-top: -32px;
 	position: relative;
 	z-index: 2;
+	padding-right: 30px;
 }
