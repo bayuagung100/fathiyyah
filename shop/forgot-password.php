@@ -34,7 +34,7 @@ include '../website/header.php';
                                     $email_body = "Dear user,\n\n";
                                     $email_body .= "Click on the following link to reset your password.\n\n";
                                     $email_body .= "----------------------------------------------------------------------\n\n";
-                                    $email_body .= "$set[url]/?email=$email\n\n";
+                                    $email_body .= "$set[url]forgot-password/?email=$email\n\n";
                                     $email_body .= "----------------------------------------------------------------------\n\n";
                                     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
                                     $headers .= "Reply-To: $email_address";   
