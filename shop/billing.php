@@ -111,7 +111,8 @@ if ($aksi=='billing') {
         $email_body .= "a/n: $nama_pemilik\n\n";
     }
     $email_body .= "\n\n\n";
-    $email_body .= "Terima Kasih.";
+    $email_body .= "Terima Kasih.\n";
+    $email_body .= "www.thefathiyyah.com";
     $headers = "From: thefathiyyah@erolperkasamandiri.co.id\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
     $headers .= "Reply-To: $mail_email_address";
     mail($to,$email_subject,$email_body,$headers);
