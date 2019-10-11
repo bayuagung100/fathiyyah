@@ -1,15 +1,17 @@
 <?php 
 session_start();
-if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 include '../admin/config.php';
-include '../website/header.php';
+if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
+
+	include '../website/header.php';
 ?>
 
 <section class="bg-light page-section" id="category">
 	<div class="container">
 
 		<div class="row" style="padding: 20px">
-            
+			<div class="col-md-2">
+			</div>
             <div class="col-md-8">
 				<?php 
 					$query = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
@@ -20,37 +22,15 @@ include '../website/header.php';
                 <div class="card">
                 <h3 class="text-center"><b>Login to Checkout</b></h3>
                 <hr>
-                <?php
-                if(isset($_POST['login'])){
-                $username = $_POST['username'];
-                $password = md5($_POST['password']);
-
-                $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' AND password='$password'");
-                $jmluser = $cekuser->num_rows;
-                $data = $cekuser->fetch_array();
-
-                if ($jmluser> 0){
-                    $_SESSION['id']       = $data['id'];
-                    $_SESSION['user']     = $data['username'];
-                    $_SESSION['pass']  = $data['password'];
-                    $_SESSION['nama']     = $data['nama'];
-                    $_SESSION['email']       = $data['email'];
-                    $_SESSION['hp']    = $data['hp'];
-                    $_SESSION['city']    = $data['city'];
-                    $_SESSION['pos']    = $data['pos'];
-                    $_SESSION['alamat']    = $data['alamat'];
-                    
-                   
-                    $_SESSION['log'] = 1;
-                    
-                    // header('Location:../checkout/');
-                }else{
-                    echo'<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
-                }
-                }
-                ?>
-				
-				<form method="post" action="">
+				<?php if (isset($_GET['pesan'])) {
+					if ($_GET['pesan']=="gagal") {
+						echo'<div class="alert alert-danger" role="alert"><b>Sorry!</b> Username atau password salah.</div>';
+					}
+				}
+				?>
+				<!-- <form action="http://localhost/fathiyyah/aksi/" method="post"> -->
+				<form action="<?php echo $set['url'];?>aksi/" method="post">
+			    	<input type="hidden" name="aksi" value="login-checkout">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Username</label>
@@ -68,71 +48,20 @@ include '../website/header.php';
 						</div>
 					</div>
 					<br>
-					<button type="submit" name="login" class="btn btn-cart">Login</button>
+					<button type="submit" class="btn btn-cart">Login</button>
                     <br>
                     <br>
-                    <a href="">Forgot Password?</a>
+                    <a href="../forgot-password/">Forgot Password?</a>
                     |
                     <a href="../regist/">Create an Account!</a>
 				</form>
                 </div>
-            </div>
-
-			<?php 
-				echo '				
-				<div class="col-md-4">
-				<div class="card">
-                <h3 class="text-center"><b>Summary Order</b></h3>
-				<hr>
-				<p>No.Tagihan: '.$nt.'</p>
-				<table class="table table-xs">
-					<tr>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				';	
-				$total=0;
-				$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-					while ($dt = mysqli_fetch_array($temp)){
-						$id = $dt['id'];
-						$ip = $dt['id_produk'];
-						$jp = $dt['jumlah'];
-						$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
-						while ($dp = mysqli_fetch_array($tp)){
-							$np = $dp['nama_product'];
-							$pic = "../media/source/".$dp['gambar'];
-							$hp = $dp['harga'];
-
-							$it = $jp*$hp;
-							$total += $it;
-				echo'
-					<tr class="item-row">
-						<td><h5>'.$np.'</h5></td>
-						<td class="text-right" title="Quantity">'.$jp.'</td>
-						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
-					</tr>
-					';
-						}
-					}
-				echo'
-					<tr class="total-row info" style="background: #d9edf7;">
-						<td class="text-right" colspan="2"><b>Total:</b></td>
-						<td class="text-right">'.rupiah($total).'</td>
-						
-					</tr>
-				</table>
-				</div>
-				</div>
-				';
-				
-			
-			?>
-
+			</div>
+			<div class="col-md-2">
+			</div>
 
 		</div>
 
-		</div>
 	</div>
 </section>
 <?php 	

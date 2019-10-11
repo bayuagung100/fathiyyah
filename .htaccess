@@ -21,6 +21,8 @@ RewriteRule ^print/$ shop/print.php [L]
 
 RewriteRule ^login/$ shop/login.php [L]
 RewriteRule ^regist/$ shop/regist.php [L]
+RewriteRule ^aksi/$ shop/aksi.php [L]
+RewriteRule ^forgot-password/$ shop/forgot-password.php [L]
 
 RewriteRule ^payment/$ shop/payment.php [L]
 

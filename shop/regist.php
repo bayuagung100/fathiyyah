@@ -1,19 +1,18 @@
-<?php include '../admin/config.php';
-include '../website/header.php';
+<?php 
+session_start();
+include '../admin/config.php';
+
+if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
+	include '../website/header.php';
 ?>
 
 <section class="bg-light page-section" id="category">
 	<div class="container">
 
 		<div class="row" style="padding: 20px">
-            
+			<div class="col-md-2">
+			</div>
             <div class="col-md-8">
-				<?php 
-					$query = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-					$data = mysqli_fetch_array($query);
-					
-					$nt = str_replace('-', '', $data['tanggal']).$data['id'].$data['id_produk'];
-				?>
                 <div class="card">
                 <h3 class="text-center"><b>Register</b></h3>
                 <hr>
@@ -209,60 +208,9 @@ include '../website/header.php';
 				</form>
                 
                 </div>
-            </div>
-
-			<?php 
-				echo '				
-				<div class="col-md-4">
-				<div class="card">
-                <h3 class="text-center"><b>Summary Order</b></h3>
-				<hr>
-				<p>No.Tagihan: '.$nt.'</p>
-				<table class="table table-xs">
-					<tr>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				';	
-				$total=0;
-				$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-					while ($dt = mysqli_fetch_array($temp)){
-						$id = $dt['id'];
-						$ip = $dt['id_produk'];
-						$jp = $dt['jumlah'];
-						$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
-						while ($dp = mysqli_fetch_array($tp)){
-							$np = $dp['nama_product'];
-							$pic = "../media/source/".$dp['gambar'];
-							$hp = $dp['harga'];
-
-							$it = $jp*$hp;
-							$total += $it;
-				echo'
-					<tr class="item-row">
-						<td><h5>'.$np.'</h5></td>
-						<td class="text-right" title="Quantity">'.$jp.'</td>
-						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
-					</tr>
-					';
-						}
-					}
-				echo'
-					<tr class="total-row info" style="background: #d9edf7;">
-						<td class="text-right" colspan="2"><b>Total:</b></td>
-						<td class="text-right">'.rupiah($total).'</td>
-						
-					</tr>
-				</table>
-				</div>
-				</div>
-				';
-				
-			
-			?>
-
-
+			</div>
+			<div class="col-md-2">
+			</div>
 		</div>
 
 		</div>
@@ -270,5 +218,8 @@ include '../website/header.php';
 </section>
 <?php 	
 include '../website/footer.php';
+}else{
+	header('location: '.$set['url']);
+}
 ?>
 
