@@ -112,7 +112,7 @@ if (isset($_GET['email'])) {
                                                 mail($to, $email_subject, $email_body, $headers);
                                                 echo '<div class="alert alert-success" role="alert">Silahkan cek email anda untuk reset password. pastikan cek di folder spam juga.</div>';
                                             } else {
-                                                echo '<div class="alert alert-danger" role="alert"><b>Sorry!</b> Email yang anda masukkan belum terdaftar.</div>';
+                                                echo '<div class="alert alert-danger" role="alert"><b>Sorry!</b> Email yang anda masukkan tidak terdaftar.</div>';
                                             }
                                         }
                                         ?>

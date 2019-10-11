@@ -127,7 +127,7 @@
     if(!empty($_SESSION['id'])){
   ?>
   <div id="id02" class="modal">
-    <div class=" modal-content animate" style="width: 35%;right: 20px;float: right;top: -24px;">
+    <div class=" modal-content animate" style="width: 40%;right: 20px;float: right;top: -24px;">
       <a class="nav-link" href="<?php echo $set["url"]; ?>profile/"><i class="fas fa-user"></i> Profile</a>
       <?php
         $tagihan = mysqli_query($mysqli, "SELECT count(DISTINCT no_tagihan) as total from pembelian WHERE id_user_shop='$_SESSION[id]' AND payment='new' ");
