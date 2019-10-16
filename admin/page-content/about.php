@@ -52,9 +52,11 @@ switch($show){
 
             buka_tabel(array("Nama Bank","No Rekening","Nama Pemilik"));
             global $mysqli;
+            $no=1;
             $query  = $mysqli->query( "select * from bank_transfer ORDER BY id ");
             while($data = $query->fetch_array()){
-              isi_bp(array($data['nama_bank'], $data['no_rek'], $data['nama_pemilik']), $link, $data['id']);
+              isi_bp($no, array($data['nama_bank'], $data['no_rek'], $data['nama_pemilik']), $link, $data['id']);
+              $no++;
             }
             tutup_tabel();
 
