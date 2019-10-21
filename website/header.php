@@ -15,6 +15,7 @@
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
   <link href="<?php echo $set["url"];?>css/agency.min.css" rel="stylesheet">
   
   <script>
@@ -48,7 +49,7 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i> Menu
       </button>
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">The Fathiyyah</a>
+      <a class="navbar-brand js-scroll-trigger" style="font-size:30px" href="<?php echo $set["url"]; ?>">The Fathiyyah</a>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
