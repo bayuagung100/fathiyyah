@@ -9,6 +9,8 @@ RewriteRule ^product/$ index.php?content=product-all [L]
 RewriteRule ^category/([0-9]+)/(.*)/$ index.php?content=category&id=$1 [L]
 RewriteRule ^category/$ index.php?content=category-all [L]
 
+RewriteRule ^cek-ongkir/$ ongkir/rajaongkir.php [L]
+
 RewriteRule ^cart/$ index.php?content=cart [L]
 
 RewriteRule ^checkout/$ shop/checkout.php [L]

@@ -3,21 +3,22 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-4">
-        <span class="copyright">Copyright &copy; The Fathiyyah <?php echo date('Y');?></span>
+        <span class="copyright">Copyright &copy; The Fathiyyah <?php echo date('Y'); ?></span>
       </div>
       <div class="col-md-4">
         <ul class="list-inline social-buttons">
           <li class="list-inline-item">
-            <a href="mailto: <?php echo $set['email'];?>" target="_blank">
+            <a href="mailto: <?php echo $set['email']; ?>" target="_blank">
               <i class="fas fa-at"></i>
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="<?php echo $set['ig'];?>" target="_blank">
+            <a href="<?php echo $set['ig']; ?>" target="_blank">
               <i class="fab fa-instagram"></i>
             </a>
-          </li><li class="list-inline-item">
-            <a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa'];?>&text=Hai, bagaimana cara memesan produk The Fathiyyah?" target="_blank">
+          </li>
+          <li class="list-inline-item">
+            <a href="https://api.whatsapp.com/send?phone=<?php echo $set['wa']; ?>&text=Hai, bagaimana cara memesan produk The Fathiyyah?" target="_blank">
               <i class="fab fa-whatsapp"></i>
             </a>
           </li>
@@ -28,50 +29,109 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="<?php echo $set["url"];?>vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo $set["url"];?>js/jquery.lazyload.js"></script>
-<script src="<?php echo $set["url"];?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo $set["url"]; ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo $set["url"]; ?>js/jquery.lazyload.js"></script>
+<script src="<?php echo $set["url"]; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="<?php echo $set["url"];?>vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="<?php echo $set["url"]; ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-<script type="text/javascript" src="<?php echo $set["url"];?>vendor/DataTables/datatables.min.js"></script>
+<script type="text/javascript" src="<?php echo $set["url"]; ?>vendor/DataTables/datatables.min.js"></script>
 
 <!-- Contact form JavaScript -->
-<script src="<?php echo $set["url"];?>js/jqBootstrapValidation.js"></script>
-<script src="<?php echo $set["url"];?>js/contact_me.js"></script>
+<script src="<?php echo $set["url"]; ?>js/jqBootstrapValidation.js"></script>
+<script src="<?php echo $set["url"]; ?>js/contact_me.js"></script>
 
 
 
 <!-- Custom scripts for this template -->
-<script src="<?php echo $set["url"];?>js/agency.min.js"></script>
+<script src="<?php echo $set["url"]; ?>js/agency.min.js"></script>
 <script type="text/javascript" charset="utf-8">
-      $(function() {
-      $("img.lazy").lazyload({effect : "fadeIn"});// untuk dipasang di <img src='xxxx'>
-      
-      });
-      </script>
+  $(function() {
+    $("img.lazy").lazyload({
+      effect: "fadeIn"
+    }); // untuk dipasang di <img src='xxxx'>
+
+  });
+</script>
 
 <script type="text/javascript">
-  
   $(document).ready(function() {
-    $('#example').DataTable( {
-        "order": [[ 2, "desc" ]]
-    } );
-} );
+    $('#example').DataTable({
+      "order": [
+        [2, "desc"]
+      ]
+    });
+  });
 
   $(".toggle-password").click(function() {
 
-  $(this).toggleClass("fa-eye fa-eye-slash");
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-    input.attr("type", "text");
-  } else {
-    input.attr("type", "password");
-  }
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
   });
-  </script>
+</script>
+
+<script type="text/javascript">
+
+  $("#city").change(function() {
+    var pos = $("#city option:selected").attr("pos");
+    $("#pos").val(pos);
+  });
+
+  // $("#provinsi").change(function() {
+  //   var prov = $("#provinsi").val();
+
+  //   $("#prov").val(prov);
+  // });
+</script>
+
+<script type="text/javascript">
+    $('#provinsi').change(function() {
+
+      //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+      var prov = $('#provinsi').val();
+
+      $.ajax({
+        type: 'GET',
+        url: 'ongkir/cek_kabupaten.php',
+        data: 'prov_id='+prov,
+        success: function(data) {
+          console.log(data);
+          //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+          $("#kabupaten").text(data);
+        }
+      });
+    });
+
+    $("#cek").click(function() {
+      //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+      var kab = $('#kabupaten').val();
+      var kurir = $('#kurir').val();
+      var berat = $('#berat').val();
+
+      $.ajax({
+        type: 'POST',
+        url: 'ongkir/cek_ongkir.php',
+        data: {
+          'kab_id': kab,
+          'kurir': kurir,
+          'asal': asal,
+          'berat': berat
+        },
+        success: function(data) {
+
+          //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+          $("#ongkir").text(data);
+        }
+      });
+    });
+</script>
 </body>
 
 </html>

@@ -26,9 +26,9 @@
 				}
 
 				echo'
-				<div class="col-md-2 col-sm-4 text-center">
+				<div class="col-md-4 col-sm-6 text-center">
 					<a href="'.$ip.'/'.$npK.'/">
-						<img class="img-category" src="'.$pic.'" alt="">
+						<img src="'.$pic.'" alt="'.$np.'" style="width:100%;height:250px">
 					</a>
 					<p>'.$np.'</p>
 				</div>

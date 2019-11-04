@@ -62,6 +62,9 @@
           <li class="nav-item">
             <a class="nav-link " href="<?php echo $set["url"]; ?>category/">Category</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="<?php echo $set["url"]; ?>cek-ongkir/">Cek Ongkir</a>
+          </li>
         </ul>
       </div>
       <ul class="navbar-nav text-uppercase">
