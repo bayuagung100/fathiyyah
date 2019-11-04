@@ -37,7 +37,7 @@ if ($_POST['aksi']=="login-home") {
 	</script>
 	';
 	}  
-}elseif ($_POST['aksi']=="login-checkout") {
+}elseif ($_POST['aksi']=="login") {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
@@ -57,14 +57,21 @@ if ($_POST['aksi']=="login-home") {
         $_SESSION['alamat']    = $data['alamat'];
         
         
-        $_SESSION['log'] = 1;
-
-        if (header('location: '.$_SERVER['HTTP_REFERER'].'?pesan=gagal')) {
-            header('location: '.$_SERVER['HTTP_REFERER']);
-        }
+		$_SESSION['log'] = 1;
+		
+		echo '
+        <script>
+        window.location = "' . $set['url'] . '";
+        </script>
+        ';
+        
         
     }else{
-        header('location: '.$_SERVER['HTTP_REFERER'].'?pesan=gagal');
+        echo '
+        <script>
+        window.location = "' . $set['url'] . 'login/?pesan=gagal";
+        </script>
+        ';
     }
 }
 ?>

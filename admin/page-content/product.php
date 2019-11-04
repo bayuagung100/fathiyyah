@@ -59,7 +59,7 @@ switch($show){
 		$data= $query->fetch_array();
 		$aksi 	= "Edit";
 	}else{
-		$data = array("id"=>"", "kd_product"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "gambar6"=>"", "deskripsi"=>"","harga"=>"","category"=>"");
+		$data = array("id"=>"", "kd_product"=>"", "nama_product"=>"", "gambar"=>"", "gambar2"=>"", "gambar3"=>"", "gambar4"=>"", "gambar5"=>"", "gambar6"=>"", "deskripsi"=>"","harga"=>"","berat"=>"","category"=>"");
 		$aksi 	= "Tambah";
 	}
 
@@ -76,6 +76,7 @@ switch($show){
 		buat_textbox("Nama Product", "nama_product", $data['nama_product'], 5);
 		buat_textbox("Kode Product", "kd_product", $data['kd_product'], 4);
 		buat_textbox("Harga", "harga", $data['harga'], 4);
+		buat_textbox("Berat(*gram)", "berat", $data['berat'], 4);
 		buat_imagepicker("Gambar 1", "gambar", $data['gambar']);
 		buat_imagepicker("Gambar 2", "gambar2", $data['gambar2']);
 		buat_imagepicker("Gambar 3", "gambar3", $data['gambar3']);
@@ -112,6 +113,7 @@ switch($show){
 	$gambar6 	= $_POST[gambar6];
 	$deskripsi		= addslashes($_POST['deskripsi']);
 	$harga		= addslashes($_POST['harga']);
+	$berat		= $_POST['berat'];
 	$category	= addslashes($_POST['category']);
 
 
@@ -129,6 +131,7 @@ switch($show){
 			gambar6,
 			deskripsi,
 			harga,
+			berat,
 			category
 			) values
 			(
@@ -142,6 +145,7 @@ switch($show){
 			'$gambar6',
 			'$deskripsi',
 			'$harga',
+			'$berat',
 			'$category'
 			)			
 			");
@@ -157,6 +161,7 @@ switch($show){
 			gambar6 	= '$gambar6',
 			deskripsi     ='$deskripsi',
 			harga     ='$harga',
+			berat     ='$berat',
 			category     ='$category'
 
 			WHERE id='$_POST[id]'

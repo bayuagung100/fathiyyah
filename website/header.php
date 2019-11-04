@@ -47,9 +47,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i> Menu
+        <i class="fas fa-bars"></i>
       </button>
-      <a class="navbar-brand js-scroll-trigger" style="font-size:30px" href="<?php echo $set["url"]; ?>">The Fathiyyah</a>
+      <a class="navbar-brand js-scroll-trigger" style="font-size:30px;margin: 0px 0px 0px 5px;" href="<?php echo $set["url"]; ?>">The Fathiyyah</a>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
@@ -79,7 +79,7 @@
         ?>
         <ul class="navbar-nav text-uppercase">
           <li>
-            <button class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-user-circle" style="font-size:24px"></i> <span>Sign In</span></button>
+            <button class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'" style="width: auto;padding: 0;"><i class="fas fa-user-circle" style="font-size:24px;width: 100%;position: relative;top: 5px;"></i> <span style="font-size: 11px;bottom: 5px;position: relative;">Sign In</span></button>
           </li>
         </ul>
       <?php

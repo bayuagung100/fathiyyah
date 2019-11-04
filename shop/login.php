@@ -30,7 +30,7 @@ if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 				?>
 				<!-- <form action="http://localhost/fathiyyah/aksi/" method="post"> -->
 				<form action="<?php echo $set['url'];?>aksi/" method="post">
-			    	<input type="hidden" name="aksi" value="login-checkout">
+			    	<input type="hidden" name="aksi" value="login">
 					<div class="row">
 						<div class="col-md-2">
 						<label for="fullname">Username</label>

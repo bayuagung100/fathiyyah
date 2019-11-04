@@ -35,7 +35,7 @@ include '../website/header.php';
 						<label for="fullname">Name</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="fullname" name="fullname" placeholder="Full Name" required value="<?php echo $_SESSION['nama'];?>">
+						<input type="text" id="fullname" name="fullname" placeholder="Full Name" required value="<?php echo isset($_SESSION['nama']);?>">
 						</div>
 					</div>
 					<div class="row">
@@ -43,7 +43,7 @@ include '../website/header.php';
 						<label for="email">Email</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="email" name="email" placeholder="name@example.com" required value="<?php echo $_SESSION['email'];?>">
+						<input type="text" id="email" name="email" placeholder="name@example.com" required value="<?php echo isset($_SESSION['email']);?>">
 						</div>
 					</div>
 					<div class="row">
@@ -51,7 +51,7 @@ include '../website/header.php';
 						<label for="hp">Phone</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required value="<?php echo $_SESSION['hp'];?>">
+						<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required value="<?php echo isset($_SESSION['hp']);?>">
 						</div>
 					</div>
 					<div class="row">
@@ -59,13 +59,13 @@ include '../website/header.php';
 						<label for="city">City</label>
 						</div>
 						<div class="col-md-4">
-						<input type="text" id="city" name="city" placeholder="Jakarta" required value="<?php echo $_SESSION['city'];?>">
+						<input type="text" id="city" name="city" placeholder="Jakarta" required value="<?php echo isset($_SESSION['city']);?>">
 						</div>
 						<div class="col-md-2">
 						<label for="pos">Postal Code</label>
 						</div>
 						<div class="col-md-4">
-						<input type="text" id="pos" name="pos" placeholder="15710" required value="<?php echo $_SESSION['pos'];?>">
+						<input type="text" id="pos" name="pos" placeholder="15710" required value="<?php echo isset($_SESSION['pos']);?>">
 						</div>
 					</div>
 					<div class="row">
@@ -73,7 +73,7 @@ include '../website/header.php';
 						<label for="alamat">Shipping Address</label>
 						</div>
 						<div class="col-md-10">
-						<textarea id="alamat" name="alamat" placeholder="Shipping Address" style="height:200px" required><?php echo $_SESSION['alamat'];?></textarea>
+						<textarea id="alamat" name="alamat" placeholder="Shipping Address" style="height:200px" required><?php echo isset($_SESSION['alamat']);?></textarea>
 						</div>
 					</div>
 					<br>
