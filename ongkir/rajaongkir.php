@@ -59,6 +59,7 @@ include '../website/header.php';
                                 $kota = new stdClass();
                                 $kota->id = $value['city_id']; //id kotanya
                                 $kota->nama = $value['city_name']; //nama kotanya
+                                $kota->type = $value['type']; //nama type
                                 $kota->pos = $value['postal_code']; //nama kotanya
 
                                 array_push($listKota, $kota); //push object kota yang kita bikin ke array yang nampung list kota
@@ -77,7 +78,7 @@ include '../website/header.php';
 
                                 echo '
                             
-                            <option value="' . $kota->id . '">' . $kota->nama . '</option>
+                            <option value="' . $kota->id . '">' . $kota->nama . ' ('.$kota->type.')</option>
 
                         ';
                             }
@@ -164,7 +165,7 @@ include '../website/header.php';
                                         ' . $etd . '
                                     </td>
                                     <td>
-                                        <b>Rp.' . $value . '</b>
+                                        <b>' . rupiah($value) . '</b>
                                     </td>
                                 </tr>
                                 ';
