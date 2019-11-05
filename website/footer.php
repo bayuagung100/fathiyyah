@@ -78,7 +78,6 @@
 </script>
 
 <script type="text/javascript">
-
   $("#city").change(function() {
     var pos = $("#city option:selected").attr("pos");
     $("#pos").val(pos);
@@ -92,45 +91,91 @@
 </script>
 
 <script type="text/javascript">
-    $('#provinsi').change(function() {
+  $('#provinsi').change(function() {
 
-      //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
-      var prov = $('#provinsi').val();
+    //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+    var prov = $('#provinsi').val();
 
-      $.ajax({
-        type: 'GET',
-        url: 'ongkir/cek_kabupaten.php',
-        data: 'prov_id='+prov,
-        success: function(data) {
-          console.log(data);
-          //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
-          $("#kabupaten").text(data);
-        }
-      });
+    $.ajax({
+      type: 'GET',
+      url: 'ongkir/cek_kabupaten.php',
+      data: 'prov_id=' + prov,
+      success: function(data) {
+        console.log(data);
+        //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+        $("#kabupaten").text(data);
+      }
     });
+  });
 
-    $("#cek").click(function() {
-      //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
-      var kab = $('#kabupaten').val();
-      var kurir = $('#kurir').val();
-      var berat = $('#berat').val();
+  $("#cek").click(function() {
+    //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+    var kab = $('#kabupaten').val();
+    var kurir = $('#kurir').val();
+    var berat = $('#berat').val();
 
+    $.ajax({
+      type: 'POST',
+      url: 'ongkir/cek_ongkir.php',
+      data: {
+        'kab_id': kab,
+        'kurir': kurir,
+        'asal': asal,
+        'berat': berat
+      },
+      success: function(data) {
+
+        //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+        $("#ongkir").text(data);
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var limit = 9;
+    var start = 0;
+    var action = 'inactive';
+
+    function load_country_data(limit, start) {
       $.ajax({
-        type: 'POST',
-        url: 'ongkir/cek_ongkir.php',
+        url: "<?php echo $set['url'];?>ajax/data/product-all.php",
+        method: "POST",
         data: {
-          'kab_id': kab,
-          'kurir': kurir,
-          'asal': asal,
-          'berat': berat
+          limit: limit,
+          start: start
         },
+        cache: false,
         success: function(data) {
-
-          //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
-          $("#ongkir").text(data);
+          $('#load_data').append(data);
+          if (data == '') {
+            $('#load_data_message').hide();
+            action = 'active';
+          } else {
+            $('#load_data_message').html("<img src='../img/load.gif'>");
+            action = "inactive";
+          }
         }
       });
+    }
+
+    if (action == 'inactive') {
+      action = 'active';
+      load_country_data(limit, start);
+    }
+    $(window).scroll(function() {
+      if ($(window).scrollTop() + $(window).height() > $("#load_data").height() && action == 'inactive') {
+        action = 'active';
+        start = start + limit;
+        setTimeout(function() {
+          load_country_data(limit, start);
+        }, 1000);
+      }
     });
+
+  });
 </script>
 </body>
 

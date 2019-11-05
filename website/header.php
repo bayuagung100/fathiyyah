@@ -65,6 +65,9 @@
           <li class="nav-item">
             <a class="nav-link " href="<?php echo $set["url"]; ?>cek-ongkir/">Cek Ongkir</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="<?php echo $set["url"]; ?>payment/">Konfirmasi Pembayaran</a>
+          </li>
         </ul>
       </div>
       <ul class="navbar-nav text-uppercase">
