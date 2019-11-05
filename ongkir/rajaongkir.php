@@ -88,7 +88,7 @@ include '../website/header.php';
                         ?>
                         <div class="col-md-4">
                             <label for="berat">Berat kiriman (*gram):</label>
-                            <input type="number" name="berat" placeholder="10" min="0" required>
+                            <input type="number" name="berat" placeholder="10" min="1" required>
                         </div>
                         <div class="col-md-4">
                             <label for="ekspedisi">Ekspedisi</label>
