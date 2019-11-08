@@ -35,7 +35,7 @@ include '../website/header.php';
                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                             CURLOPT_CUSTOMREQUEST => "GET",
                             CURLOPT_HTTPHEADER => array(
-                                "key: b9af4b97d056d2761d0e7d69f9ff475d"
+                                "key: 772b99fdc5a62231d8a83772580ae8fa"
                             ),
                         ));
 
@@ -69,7 +69,7 @@ include '../website/header.php';
                             //$listKota : udah berisi list kota yang kita butuhin
                             echo '
                         <div class="col-md-4">
-                            <label for="city">Kota/Kabuaten Tujuan</label>
+                            <label for="city">Kota/Kabupaten Tujuan</label>
                             <select id="city" name="tujuan" required>
                             <option value="">Pilih Tujuan</option>
                         ';
@@ -86,7 +86,10 @@ include '../website/header.php';
                         </div>
                         ';
                         }
+
+                        
                         ?>
+                        
                         <div class="col-md-4">
                             <label for="berat">Berat kiriman (*gram):</label>
                             <input type="number" name="berat" placeholder="10" min="1" required>
@@ -120,7 +123,7 @@ include '../website/header.php';
                         CURLOPT_POSTFIELDS => "origin=153&destination=" . $_GET['tujuan'] . "&weight=" . $_GET['berat'] . "&courier=" . $_GET['ekspedisi'] . "",
                         CURLOPT_HTTPHEADER => array(
                             "content-type: application/x-www-form-urlencoded",
-                            "key: b9af4b97d056d2761d0e7d69f9ff475d"
+                            "key: 772b99fdc5a62231d8a83772580ae8fa"
                         ),
                     ));
 

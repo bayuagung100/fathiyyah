@@ -120,6 +120,7 @@ if ($produk['gambar6']) {
 				<h3><?php echo $produk['nama_product'];?></h3>
 				<p>Category: <a href="<?php echo $set["url"].'category/'.$kat['id'].'/'.$npK.'/';?>"><?php echo $kat['nama_cp'];?></a></p>
 				<p>Price: <?php echo rupiah($produk['harga']);?></p>
+				<p>Berat: <?php echo $produk['berat'];?> (gram)</p>
 				<p>Deskripsi: <br><?php echo $produk['deskripsi'];?></p>
 				<br>
 				<br>

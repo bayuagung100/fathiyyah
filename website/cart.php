@@ -19,15 +19,18 @@
 				<div class="col-md-12">
 				<table class="table table-xs">
 					<tr>
-						<th>ITEM NAME</th>
-						<th class="text-right">SIZE</th>
-						<th class="text-right">QUANTITY</th>
-						<th class="text-right">PRICE</th>
-						<th class="text-right">ITEMS TOTAL</th>
+						<th>Nama Produk</th>
+						<th class="text-right">Ukuran</th>
+						<th class="text-right">Qty</th>
+						<th class="text-right">Berat</th>
+						<th class="text-right">Harga</th>
+						<th class="text-right">Total Harga</th>
+						<th class="text-right">Total Berat</th>
 						<th></th>
 					</tr>
 				';	
 				$total=0;
+				$total_berat=0;
 				$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
 					while ($dt = mysqli_fetch_array($temp)){
 						$id = $dt['id'];
@@ -39,16 +42,22 @@
 							$np = $dp['nama_product'];
 							$pic = "../media/source/".$dp['gambar'];
 							$hp = $dp['harga'];
+							$bp = $dp['berat'];
+
+							$tb = $jp*$bp;
 
 							$it = $jp*$hp;
 							$total += $it;
+							$total_berat += $tb;
 				echo'
 					<tr class="item-row">
 						<td><a href="'.$set["url"].'product/'.$ip.'/detail/"><h5>'.$np.'</h5></a><br><img class="img-product-home text-center" style="max-width:100px;max-height:100px" src="'.$pic.'"></td>
-						<td class="text-right" title="Size">'.$uk.'</td>
-						<td class="text-right" title="Quantity">'.$jp.'</td>
-						<td class="text-right" title="Price">'.rupiah($hp).'</td>
-						<td class="text-right" title="Items Total">'.rupiah($it).'</td>
+						<td class="text-right" title="Ukuran">'.$uk.'</td>
+						<td class="text-right" title="Qty">'.$jp.'</td>
+						<td class="text-right" title="Berat">'.$bp.' (gram)</td>
+						<td class="text-right" title="Harga">'.rupiah($hp).'</td>
+						<td class="text-right" title="Total Harga">'.rupiah($it).'</td>
+						<td class="text-right" title="Total Berat">'.$tb.' (gram)</td>
 						<td><a href="'.$set["url"].'shop/action.php?id='.$id.'&act=delete"><i class="fas fa-trash"></i> Delete</a></td>
 					</tr>
 					';
@@ -56,8 +65,9 @@
 					}
 				echo'
 					<tr class="total-row info" style="background: #d9edf7;">
-						<td class="text-right" colspan="4"><b>Total:</b></td>
-						<td class="text-right">'.rupiah($total).'</td>
+						<td class="text-right" colspan="5"><b>Total:</b></td>
+						<td class="text-right" style="border-right: 1px solid black;">'.rupiah($total).'</td>
+						<td class="text-right">'.$total_berat.' (gram)</td>
 						<td></td>
 					</tr>
 				</table>

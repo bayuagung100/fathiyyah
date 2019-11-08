@@ -14,6 +14,7 @@ RewriteRule ^cek-ongkir/$ ongkir/rajaongkir.php [L]
 RewriteRule ^cart/$ index.php?content=cart [L]
 
 RewriteRule ^checkout/$ shop/checkout.php [L]
+RewriteRule ^billing/$ shop/billing.php [L]
 
 RewriteRule ^profile/$ shop/profile.php [L]
 

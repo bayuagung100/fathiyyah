@@ -41,7 +41,7 @@ $query = mysqli_query($mysqli,"SELECT * FROM setting ");
 $set = mysqli_fetch_array($query); 
 
 function rupiah($angka){
-	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	$hasil_rupiah = "Rp " . number_format($angka,0,',','.');
 	return $hasil_rupiah;
 }
 
@@ -142,6 +142,20 @@ function metaheader()
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="'.$c["nama_cp"].' | '.$h["judul_website"].'" />
     <meta name="twitter:description" content="Beli perlengkapan syar'."'".'i wanita dan baju muslim wanita & remaja wanita modern model terbaru di '.$h["judul_website"].'" />
+    ';
+    } elseif ($content=="cart") {
+    echo'
+    <title>Keranjang Belanja | '.$h["judul_website"].'</title>
+    <meta name="description" content="'.$h["deskripsi"].'" />
+    <link rel="canonical" href="'.$h["url"].'cart/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Keranjang Belanja | '.$h["judul_website"].'" />
+    <meta property="og:description" content="'.$h["deskripsi"].'" />
+    <meta property="og:url" content="'.$h["url"].'cart/" />
+    <meta property="og:site_name" content="'.$h["judul_website"].'" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Keranjang Belanja | '.$h["judul_website"].'" />
+    <meta name="twitter:description" content="'.$h["deskripsi"].'" />
     ';
     }
 }
