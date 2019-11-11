@@ -27,37 +27,36 @@ include '../website/header.php';
 					<hr>
 					<form method="post" action="<?php echo $set["url"]; ?>billing/">
 						<!-- <form method="get" action="http://localhost/fathiyyah/shop/billing.php"> -->
-						<input type="hidden" name="aksi" value="billing">
-						<input type="hidden" name="no_tagihan" value="<?php echo $nt; ?>">
-						<input type="hidden" name="id_user_shop" value="<?php echo isset($_SESSION['id']); ?>">
-						
+						<input type="hidden" id="aksi" name="aksi" value="billing">
+						<input type="hidden" id="no_tagihan" name="no_tagihan" value="<?php echo $nt; ?>">
+						<input type="hidden" id="id_user_shop" name="id_user_shop" value="<?php if (isset($_SESSION['id'])) {echo $_SESSION['id'];} ?>">
 						<?php
-							$total_berat=0;
-							$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-								while ($dt = mysqli_fetch_array($temp)){
-									$id = $dt['id'];
-									$ip = $dt['id_produk'];
-									$jp = $dt['jumlah'];
-									$uk = $dt['ukuran'];
-									$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
-									while ($dp = mysqli_fetch_array($tp)){
-										$np = $dp['nama_product'];
-										$pic = "../media/source/".$dp['gambar'];
-										$hp = $dp['harga'];
-										$bp = $dp['berat'];
-			
-										$tb = $jp*$bp;
-										$total_berat += $tb;
-									}
-								}
+						$total_berat = 0;
+						$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
+						while ($dt = mysqli_fetch_array($temp)) {
+							$id = $dt['id'];
+							$ip = $dt['id_produk'];
+							$jp = $dt['jumlah'];
+							$uk = $dt['ukuran'];
+							$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
+							while ($dp = mysqli_fetch_array($tp)) {
+								$np = $dp['nama_product'];
+								$pic = "../media/source/" . $dp['gambar'];
+								$hp = $dp['harga'];
+								$bp = $dp['berat'];
+
+								$tb = $jp * $bp;
+								$total_berat += $tb;
+							}
+						}
 						?>
-						<input type="hidden" name="berat" value="<?php echo $total_berat; ?>">
+						<input type="hidden" id="berat" name="berat" value="<?php echo $total_berat; ?>">
 						<div class="row">
 							<div class="col-md-2">
 								<label for="fullname">Nama</label>
 							</div>
 							<div class="col-md-10">
-								<input type="text" id="fullname" name="fullname" placeholder="Nama Lengkap" required value="<?php echo isset($_SESSION['nama']); ?>">
+								<input type="text" id="fullname" name="fullname" placeholder="Nama Lengkap" required value="<?php if (isset($_SESSION['nama'])) {echo $_SESSION['nama'];} ?>">
 							</div>
 						</div>
 						<div class="row">
@@ -65,7 +64,7 @@ include '../website/header.php';
 								<label for="email">Email</label>
 							</div>
 							<div class="col-md-10">
-								<input type="text" id="email" name="email" placeholder="name@example.com" required value="<?php echo isset($_SESSION['email']); ?>">
+								<input type="text" id="email" name="email" placeholder="name@example.com" required value="<?php if (isset($_SESSION['email'])) {echo $_SESSION['email'];} ?>">
 							</div>
 						</div>
 						<div class="row">
@@ -73,7 +72,7 @@ include '../website/header.php';
 								<label for="hp">No.HP</label>
 							</div>
 							<div class="col-md-10">
-								<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required value="<?php echo isset($_SESSION['hp']); ?>">
+								<input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx" required value="<?php if (isset($_SESSION['hp'])) {echo $_SESSION['hp'];} ?>">
 							</div>
 						</div>
 						<div class="row">
@@ -94,7 +93,7 @@ include '../website/header.php';
 										CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 										CURLOPT_CUSTOMREQUEST => "GET",
 										CURLOPT_HTTPHEADER => array(
-											"key: b9af4b97d056d2761d0e7d69f9ff475d"
+											"key: 772b99fdc5a62231d8a83772580ae8fa"
 										),
 									));
 
@@ -103,8 +102,9 @@ include '../website/header.php';
 
 									$data = json_decode($response, true);
 									for ($i = 0; $i < count($data['rajaongkir']['results']); $i++) {
-										echo "<option value='" . $data['rajaongkir']['results'][$i]['province_id'] . "'>" . $data['rajaongkir']['results'][$i]['province'] . "</option>";
+										echo "<option prov_id='" . $data['rajaongkir']['results'][$i]['province_id'] . "' value='" . $data['rajaongkir']['results'][$i]['province'] ."'>" . $data['rajaongkir']['results'][$i]['province'] . "</option>";
 									}
+									echo $response;
 									?>
 								</select>
 							</div>
@@ -122,7 +122,7 @@ include '../website/header.php';
 							</div>
 							<div class="col-md-6">
 								<label for="kode_pos">Kode Pos</label>
-								<input type="text" value="" name='kode_pos' id='kode_pos' required>
+								<input type="text" name='kode_pos' id='kode_pos' required value="<?php if (isset($_SESSION['pos'])) {echo $_SESSION['pos'];} ?>">
 							</div>
 						</div>
 						<br>
@@ -131,66 +131,43 @@ include '../website/header.php';
 								<label for="alamat">Alamat Pengiriman</label>
 							</div>
 							<div class="col-md-10">
-								<textarea id="alamat" name="alamat" placeholder="Alamat Pengiriman" style="height:200px" required><?php echo isset($_SESSION['alamat']); ?></textarea>
+								<textarea id="alamat" name="alamat" placeholder="Alamat Pengiriman" style="height:200px" required><?php if (isset($_SESSION['alamat'])) {echo $_SESSION['alamat'];} ?></textarea>
 							</div>
 						</div>
+						<hr>
+						<h5>Opsi Pengiriman</h5>
+						<div class="row text-center">
+							<div class="col-md-4">
+								<label>
+									<input type="radio" id="ekspedisi_jne" name="cour" value="jne" required>
+									<img src="https://4.bp.blogspot.com/-fFDLpgZ1Phc/WmodcSFG05I/AAAAAAAAAU0/uYmDnAgjIFkukgg1KsMxoHmocJY-BmENgCLcBGAs/s1600/jne.jpg">
+									<p>JNE</p>
+								</label>
+							</div>
+							<div class="col-md-4">
+								<label>
+									<input type="radio" id="ekspedisi_pos" name="cour" value="pos" required>
+									<img src="https://4.bp.blogspot.com/-pDkLCuqPJy4/WmoddcsTDbI/AAAAAAAAAVA/zjQfPv-jthUpgPxuxqiPKDSdP5f43xu8gCLcBGAs/s1600/pos.jpg">
+									<p>POS</p>
+								</label>
+							</div>
+							<div class="col-md-4">
+								<label>
+									<input type="radio" id="ekspedisi_tiki" name="cour" value="tiki" required>
+									<img src="https://2.bp.blogspot.com/-UGUohE6I-1M/Wmoddl7IecI/AAAAAAAAAVI/HuGEyMIU6Yg17jPfGflEtfnb7gHd2-zmACLcBGAs/s1600/tiki.jpg">
+									<p>TIKI</p>
+								</label>
+							</div>
+						</div>
+						<div id="ongkir">
+						</div>
 						<br>
-						<button type="submit" class="btn btn-cart">Next</button>
+						<button type="submit" class="btn btn-cart">Buat Pesanan</button>
 					</form>
 				</div>
 			</div>
 
-			<!-- <?php
-					echo '				
-				<div class="col-md-4">
-				<div class="card">
-                <h3 class="text-center"><b>Summary Order</b></h3>
-				<hr>
-				<p>No.Tagihan: ' . $nt . '</p>
-				<table class="table table-xs">
-					<tr>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				';
-					$total = 0;
-					$temp = mysqli_query($mysqli, "SELECT * FROM order_temp WHERE id_session='$sesi' ");
-					while ($dt = mysqli_fetch_array($temp)) {
-						$id = $dt['id'];
-						$ip = $dt['id_produk'];
-						$jp = $dt['jumlah'];
-						$tp = mysqli_query($mysqli, "SELECT * FROM product WHERE id='$ip' ");
-						while ($dp = mysqli_fetch_array($tp)) {
-							$np = $dp['nama_product'];
-							$pic = "../media/source/" . $dp['gambar'];
-							$hp = $dp['harga'];
-
-							$it = $jp * $hp;
-							$total += $it;
-							echo '
-					<tr class="item-row">
-						<td><h5>' . $np . '</h5></td>
-						<td class="text-right" title="Quantity">' . $jp . '</td>
-						<td class="text-right" title="Items Total">' . rupiah($it) . '</td>
-					</tr>
-					';
-						}
-					}
-					echo '
-					<tr class="total-row info" style="background: #d9edf7;">
-						<td class="text-right" colspan="2"><b>Total:</b></td>
-						<td class="text-right">' . rupiah($total) . '</td>
-						
-					</tr>
-				</table>
-				</div>
-				</div>
-				';
-
-
-					?> -->
-
+			
 
 		</div>
 

@@ -1015,6 +1015,10 @@ tr.shown td.details-control {
 	outline: 2px solid #f00;
 }
 
+/* IMAGE STYLES */
+[type=radio]+div.list-ekspedisi {
+	cursor: pointer;
+}
 [type=radio]:checked+div.list-ekspedisi {
 	outline: 2px solid #f00;
 }
@@ -1026,7 +1030,7 @@ div.list-ekspedisi {
     border-left: 3px solid #eee;
     padding: 10px 15px;
 	font-size: 13px;
-	cursor: pointer;
+	width: 645px;
 }
 
 .pull-right{
@@ -1059,5 +1063,14 @@ h6.ro-result {
 @media (max-width:767px) {
 	.hidden-sm {
 		display: none !important;
+	}
+	div.list-ekspedisi {
+		background: #fcfcfc;
+		border: 1px solid #eee;
+		margin-bottom: 10px;
+		border-left: 3px solid #eee;
+		padding: 10px 15px;
+		font-size: 13px;
+		width: auto;
 	}
 }

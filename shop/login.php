@@ -36,7 +36,7 @@ if(empty($_SESSION['user']) or empty($_SESSION['pass']) or $_SESSION['log']==0){
 						<label for="fullname">Username</label>
 						</div>
 						<div class="col-md-10">
-						<input type="text" id="username" name="username" placeholder="Username/Email/Phone" required>
+						<input type="text" id="username" name="username" placeholder="Username/Email" required>
 						</div>
 					</div>
 					<div class="row">

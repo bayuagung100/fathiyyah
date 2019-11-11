@@ -7,125 +7,36 @@ include "../func/func_date.php";
 $aksi = $_POST['aksi'];
 $tagihan = $_POST['no_tagihan'];
 $id_user_shop = $_POST['id_user_shop'];
+$berat = $_POST['berat'];
 $nama = $_POST['fullname'];
 $email = $_POST['email'];
 $hp = $_POST['hp'];
-$alamat = $_POST['alamat'];
 $provinsi = $_POST['provinsi'];
 $kabupaten = $_POST['kabupaten'];
 $kecamatan = $_POST['kecamatan'];
 $kode_pos = $_POST['kode_pos'];
+$alamat = $_POST['alamat'];
+$cour = $_POST['cour'];
+$service = $_POST['service'];
+$price = explode("-",$service);
 
 if ($aksi == 'billing') {
-    include '../website/header.php';
-    echo '
-    <section class="bg-light page-section">
-        <div class="container">
-            <div class="col-md-12" style="max-width: 700px;position: relative;margin: auto;">
-                <div class="card">
-                    <h3 class="text-center"><b>Opsi Pengiriman</b></h3>
-                    <hr>
-                    <p><b>No.Tagihan</b>: ' . $tagihan . '</p>
-                    <p><b>Nama</b>: ' . $nama . '</p>
-                    <p><b>Email</b>: ' . $email . '</p>
-                    <p><b>No.HP</b>: ' . $hp . '</p>';
-                    $curl = curl_init();
+    echo'aksi:'.$aksi.'<br>';
+    echo'tagihan:'.$tagihan.'<br>';
+    echo'id_user_shop:'.$id_user_shop.'<br>';
+    echo'berat:'.$berat.'<br>';
+    echo'nama:'.$nama.'<br>';
+    echo'email:'.$email.'<br>';
+    echo'hp:'.$hp.'<br>';
+    echo'provinsi:'.$provinsi.'<br>';
+    echo'kabupaten:'.$kabupaten.'<br>';
+    echo'kecamatan:'.$kecamatan.'<br>';
+    echo'kode_pos:'.$kode_pos.'<br>';
+    echo'alamat:'.$alamat.'<br>';
+    echo'cour:'.$cour.'<br>';
+    echo'service:'.$service.'<br>';
+    echo'price:'.$price[1].'<br>';
 
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=$provinsi",
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 30,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "GET",
-                        CURLOPT_HTTPHEADER => array(
-                            "key: 772b99fdc5a62231d8a83772580ae8fa"
-                        ),
-                    ));
-
-                    $response = curl_exec($curl);
-                    $err = curl_error($curl);
-
-                    curl_close($curl);
-
-                    if ($err) {
-                        echo "cURL Error #:" . $err;
-                    } else {
-                        $data = json_decode($response, true);
-                        $province_id = $data['rajaongkir']['results']['province_id'];
-                        $province = $data['rajaongkir']['results']['province'];
-                        echo $response;
-                    }
-
-
-                    $curl2 = curl_init();
-
-                    curl_setopt_array($curl2, array(
-                        CURLOPT_URL => "https://api.rajaongkir.com/starter/city?id=$kabupaten&province=$province_id",
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 30,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "GET",
-                        CURLOPT_HTTPHEADER => array(
-                            "key: 772b99fdc5a62231d8a83772580ae8fa"
-                        ),
-                    ));
-
-                    $response2 = curl_exec($curl2);
-                    $err2 = curl_error($curl2);
-
-                    curl_close($curl2);
-
-                    if ($err2) {
-                        echo "cURL Error #:" . $err2;
-                    } else {
-                        $data2 = json_decode($response2, true);
-                        $city_id = $data2['rajaongkir']['results']['city_id'];
-                        $type = $data2['rajaongkir']['results']['type'];
-                        $city_name = $data2['rajaongkir']['results']['city_name'];
-                    }
-
-    echo '                    
-                    <p><b>Alamat Pengiriman</b>: ' . $alamat . ', ' . $kecamatan . ' - ' . $city_name . '('.$type.'), ' . $province . ' '.$kode_pos.'</p>
-                    <hr>
-                    <h4>Pilih Ekspedisi</h4>
-                    <div class="row text-center">
-                        <div class="col-md-4">
-                        <label>
-                            <input type="radio" id="ekspedisi_jne" name="cour" value="jne" required>
-                            <img src="https://4.bp.blogspot.com/-fFDLpgZ1Phc/WmodcSFG05I/AAAAAAAAAU0/uYmDnAgjIFkukgg1KsMxoHmocJY-BmENgCLcBGAs/s1600/jne.jpg">
-                            <p>JNE</p>
-                        </label>
-                        </div>
-                        <div class="col-md-4">
-                        <label>
-                            <input type="radio" id="ekspedisi_pos" name="cour" value="pos" required>
-                            <img src="https://4.bp.blogspot.com/-pDkLCuqPJy4/WmoddcsTDbI/AAAAAAAAAVA/zjQfPv-jthUpgPxuxqiPKDSdP5f43xu8gCLcBGAs/s1600/pos.jpg">
-                            <p>POS</p>
-                        </label>
-                        </div>
-                        <div class="col-md-4">
-                        <label>
-                            <input type="radio" id="ekspedisi_tiki" name="cour" value="tiki" required>
-                            <img src="https://2.bp.blogspot.com/-UGUohE6I-1M/Wmoddl7IecI/AAAAAAAAAVI/HuGEyMIU6Yg17jPfGflEtfnb7gHd2-zmACLcBGAs/s1600/tiki.jpg">
-                            <p>TIKI</p>
-                        </label>
-                        </div>
-                    </div>
-                    <div id="ongkir">
-                    </div>
-                    ';
-    echo '       
-                </div>
-            </div>
-        </div>
-    </section>
-    ';
-
-    include '../website/footer.php';
     // $query = mysqli_query($mysqli,"SELECT * FROM order_temp WHERE id_session='$sesi' ");
     // while ($data = mysqli_fetch_array ($query)) {
     //     $oid = $data['id'];

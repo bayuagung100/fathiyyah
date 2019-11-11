@@ -41,7 +41,7 @@ if ($_POST['aksi']=="login-home") {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' AND password='$password'");
+    $cekuser = $mysqli->query("SELECT * FROM user_shop WHERE username='$username' OR email='$username' AND password='$password'");
     $jmluser = $cekuser->num_rows;
     $data = $cekuser->fetch_array();
 
@@ -60,7 +60,8 @@ if ($_POST['aksi']=="login-home") {
 		$_SESSION['log'] = 1;
 		
 		echo '
-        <script>
+		<script>
+		alert("Login Success"); 
         window.location = "' . $set['url'] . '";
         </script>
         ';

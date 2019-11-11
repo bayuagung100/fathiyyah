@@ -111,7 +111,7 @@
       <input type="hidden" name="aksi" value="login-home">
       <div class="container">
         <label for="usernamehome"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="usernamehome" required>
+        <input type="text" placeholder="Enter Username/Email" name="usernamehome" required>
 
         <label for="passwordhome"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="passwordhome" required>

@@ -22,6 +22,7 @@ RewriteRule ^tagihan/$ shop/tagihan.php [L]
 
 RewriteRule ^print/$ shop/print.php [L]
 
+RewriteRule ^auth/$ auth.php [L]
 RewriteRule ^login/$ shop/login.php [L]
 RewriteRule ^regist/$ shop/regist.php [L]
 RewriteRule ^aksi/$ shop/aksi.php [L]
