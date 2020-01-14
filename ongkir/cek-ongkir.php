@@ -1,5 +1,7 @@
 <?php
-$id_kabupaten = isset($_POST['city_id']);
+$id_kecamatan = isset($_POST['subdistrict_id']);
+$kecamatan = $_POST['subdistrict_name'];
+$id_kabupaten = $_POST['city_id'];
 $kabupaten = $_POST['city_name'];
 $kurir = $_POST['cour'];
 $berat = $_POST['berat'];
@@ -8,14 +10,14 @@ include '../admin/config.php';
 if (!empty($id_kabupaten)) {
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
-		CURLOPT_URL => "http://api.rajaongkir.com/starter/cost",
+		CURLOPT_URL => "https://pro.rajaongkir.com/api/cost",
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => "",
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 30,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "POST",
-		CURLOPT_POSTFIELDS => "origin=153&destination=" . $id_kabupaten . "&weight=" . $berat . "&courier=" . $kurir . "",
+		CURLOPT_POSTFIELDS => "origin=153&originType=city&destination=".$id_kecamatan."&destinationType=subdistrict&weight=" . $berat . "&courier=" . $kurir . "",
 		CURLOPT_HTTPHEADER => array(
 			"content-type: application/x-www-form-urlencoded",
 			"key: 772b99fdc5a62231d8a83772580ae8fa"
@@ -37,7 +39,7 @@ if (!empty($id_kabupaten)) {
 
 		echo '
 		<p>Pilih layanan:<br>
-		Jakarta Selatan ke '.$kabupaten.' @'.$berat.' gram
+		Jakarta Selatan ke '.$kecamatan.' @'.$berat.' gram
 		</p>';
 
 		for ($i = 0; $i < count($costs); $i++) {

@@ -1,10 +1,10 @@
 <?php
-$province_id = $_POST['province_id'];
-$province = $_POST['province'];
+$city_id = $_POST['city_id'];
+$city_name = $_POST['city_name'];
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://pro.rajaongkir.com/api/city?province=$province_id",
+  CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$city_id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -29,7 +29,7 @@ if ($err) {
 
 $data = json_decode($response, true);
 for ($i=0; $i < count($data['rajaongkir']['results']); $i++) { 
-    echo "<option value='".$data['rajaongkir']['results'][$i]['city_id']."' city_name='".$data['rajaongkir']['results'][$i]['city_name']." (".$data['rajaongkir']['results'][$i]['type'].")'>".$data['rajaongkir']['results'][$i]['city_name']." (".$data['rajaongkir']['results'][$i]['type'].")</option>";
+    echo "<option value='".$data['rajaongkir']['results'][$i]['subdistrict_id']."' subdistrict_name='".$data['rajaongkir']['results'][$i]['subdistrict_name']."'>".$data['rajaongkir']['results'][$i]['subdistrict_name']."</option>";
 }
 
 ?>

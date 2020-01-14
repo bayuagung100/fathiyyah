@@ -21,13 +21,12 @@ include '../website/header.php';
                     <img src="https://4.bp.blogspot.com/-pDkLCuqPJy4/WmoddcsTDbI/AAAAAAAAAVA/zjQfPv-jthUpgPxuxqiPKDSdP5f43xu8gCLcBGAs/s1600/pos.jpg">
                     <img src="https://2.bp.blogspot.com/-UGUohE6I-1M/Wmoddl7IecI/AAAAAAAAAVI/HuGEyMIU6Yg17jPfGflEtfnb7gHd2-zmACLcBGAs/s1600/tiki.jpg">
                 </div>
-                <form action="" method="get" style="margin-bottom:10px">
+                <form action="" method="post" style="margin-bottom:10px">
                     <div class="row">
                         <?php
                         $curl = curl_init();
-
                         curl_setopt_array($curl, array(
-                            CURLOPT_URL => "https://api.rajaongkir.com/starter/city",
+                            CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => "",
                             CURLOPT_MAXREDIRS => 10,
@@ -41,55 +40,55 @@ include '../website/header.php';
 
                         $response = curl_exec($curl);
                         $err = curl_error($curl);
-
                         curl_close($curl);
-
-                        $listKota = array(); //bikin array untuk nampung list kota
+                        $listProv = array();
 
                         if ($err) {
                             echo "cURL Error #:" . $err;
                         } else {
-                            $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
+                            $arrayResponse = json_decode($response, true);
 
-                            $tempListKota = $arrayResponse['rajaongkir']['results']; // ambil array yang dibutuhin aja, disini resultnya aja
+                            $tempListProv = $arrayResponse['rajaongkir']['results'];
 
-                            //looping array temporary untuk masukin object yang kita butuhin
-                            foreach ($tempListKota as $value) {
-                                //bikin object baru
-                                $kota = new stdClass();
-                                $kota->id = $value['city_id']; //id kotanya
-                                $kota->nama = $value['city_name']; //nama kotanya
-                                $kota->type = $value['type']; //nama type
-                                $kota->pos = $value['postal_code']; //nama kotanya
+                            foreach ($tempListProv as $value) {
+                                $prov = new stdClass();
+                                $prov->id = $value['province_id'];
+                                $prov->nama = $value['province'];
 
-                                array_push($listKota, $kota); //push object kota yang kita bikin ke array yang nampung list kota
-
+                                array_push($listProv, $prov);
                             }
 
-                            //$listKota : udah berisi list kota yang kita butuhin
                             echo '
-                        <div class="col-md-4">
-                            <label for="city">Kota/Kabupaten Tujuan</label>
-                            <select id="city" name="tujuan" required>
-                            <option value="">Pilih Tujuan</option>
-                        ';
-                            //ini untuk ngecek aja isi $list kota udah bener apa belum
-                            foreach ($listKota as $kota) {
-
+                            <div class="col-md-4">
+                                <label for="provinsi">Provinsi Tujuan</label>
+                                <select id="provinsi" name="provinsi" required>
+                                <option value="">Pilih Tujuan</option>
+                            ';
+                            foreach ($listProv as $prov) {
                                 echo '
-                            
-                            <option value="' . $kota->id . '">' . $kota->nama . ' ('.$kota->type.')</option>
-
-                        ';
+                                <option value="' . $prov->id . '" province="' . $prov->nama . '">' . $prov->nama . '</option>
+                                ';
                             }
-                            echo '</select>
-                        </div>
-                        ';
+                            echo '
+                                </select>
+                            </div>';
                         }
-
-                        
                         ?>
-                        
+                        <div class="col-md-4">
+                            <label for="kabupaten">Kota/Kabupaten Tujuan</label>
+                            <select id="kabupaten" name="kabupaten" required>
+                                <option value="">Pilih Tujuan</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="kecamatan">Kecamatan Tujuan</label>
+                            <select id="kecamatan" name="kecamatan" required>
+                                <option value="">Pilih Tujuan</option>
+                            </select>
+                        </div>
+
+
                         <div class="col-md-4">
                             <label for="berat">Berat kiriman (*gram):</label>
                             <input type="number" name="berat" placeholder="10" min="1" required>
@@ -109,18 +108,18 @@ include '../website/header.php';
                 </form>
 
                 <?php
-                if (isset($_GET['tujuan']) and isset($_GET['berat']) and isset($_GET['ekspedisi'])) {
+                if (isset($_POST['kecamatan']) and isset($_POST['berat']) and isset($_POST['ekspedisi'])) {
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+                        CURLOPT_URL => "https://pro.rajaongkir.com/api/cost",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
                         CURLOPT_TIMEOUT => 30,
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "POST",
-                        CURLOPT_POSTFIELDS => "origin=153&destination=" . $_GET['tujuan'] . "&weight=" . $_GET['berat'] . "&courier=" . $_GET['ekspedisi'] . "",
+                        CURLOPT_POSTFIELDS => "origin=153&originType=city&destination=".$_POST['kecamatan']."&destinationType=subdistrict&weight=".$_POST['berat']."&courier=".$_POST['ekspedisi']."",
                         CURLOPT_HTTPHEADER => array(
                             "content-type: application/x-www-form-urlencoded",
                             "key: 772b99fdc5a62231d8a83772580ae8fa"

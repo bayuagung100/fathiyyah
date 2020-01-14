@@ -128,17 +128,41 @@
     $('#provinsi').change(function() {
 
       //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
-      var prov = $('#provinsi option:selected').attr('prov_id');
-      console.log(prov);
-
+      var province_id = $('#provinsi').val();
+      var province = $('#provinsi option:selected').attr('province');
+      console.log(province_id);
       $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '<?php echo $set['url']; ?>ongkir/cek-kabupaten.php',
-        data: 'province_id=' + prov,
+        data: {
+          'province_id': province_id,
+          'province': province
+        },
         success: function(data) {
 
           //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
           $("#kabupaten").html(data);
+        }
+      });
+    });
+
+    $('#kabupaten').change(function() {
+
+      //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+      var city_id = $('#kabupaten').val();
+      var city_name = $('#kabupaten option:selected').attr('city_name');
+
+      $.ajax({
+        type: 'POST',
+        url: '<?php echo $set['url']; ?>ongkir/cek-kecamatan.php',
+        data: {
+          'city_id': city_id,
+          'city_name': city_name
+        },
+        success: function(data) {
+
+          //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+          $("#kecamatan").html(data);
         }
       });
     });
@@ -220,7 +244,6 @@
     });
 
   });
-
 </script>
 </body>
 

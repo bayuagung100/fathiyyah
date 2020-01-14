@@ -13,7 +13,7 @@
 // $database = "u328098603_fathi";
 
 //localpc
-$servername = "localhost";
+$servername = "localhost";  
 $username = "root";
 $password = "";
 $database = "fathiyyah";
